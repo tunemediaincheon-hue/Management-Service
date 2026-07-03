@@ -1,4 +1,10 @@
 import React, { useState } from 'react';
+import evguardProduct1 from '../assets/images/evguard_product_1_1782971146270.jpg';
+import evguardProduct2 from '../assets/images/evguard_product_2_1782971163249.jpg';
+import evguardDemo1 from '../assets/images/evguard_demo_1_1783021414746.jpg';
+import evguardDemo2 from '../assets/images/evguard_demo_2_1783021430096.jpg';
+import evguardDemo3 from '../assets/images/evguard_demo_3_1783021444805.jpg';
+
 import { 
   ShieldAlert, 
   Flame, 
@@ -44,7 +50,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
     {
       title: "EV가드 배터리 침투형 소화 전용 유닛",
       desc: "특허 받은 열폭주 직접 관통 침투 소화 노즐이 적용되어, 차량 밑바닥 배터리 하우징 내부 고열 화재 발생부에 직접 소화액을 초강력 분사합니다.",
-      image: "/src/assets/images/evguard_product_1_1782971146270.jpg",
+      image: evguardProduct1,
       type: "EV CLASS A, B, C, D",
       range: "4-6 M",
       capacity: "2.5 L",
@@ -53,7 +59,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
     {
       title: "EV가드 지능형 고압 연결 셋트",
       desc: "소방 호스 및 가압식 소화 가스 실린더가 다이렉트로 체결되어 고온 열폭주 셀 냉각을 위해 최적화된 물과 가스 혼합 소화 포뮬러를 지속 피딩합니다.",
-      image: "/src/assets/images/evguard_product_2_1782971163249.jpg",
+      image: evguardProduct2,
       type: "EV SPECIALIST",
       range: "5-8 M",
       capacity: "연속 공급 가능",
@@ -596,7 +602,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white border border-zinc-150 rounded-2xl overflow-hidden shadow-sm group">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src="/src/assets/images/evguard_demo_1_1783021414746.jpg" 
+                      src={evguardDemo1} 
                       alt="현장 출동 시연" 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
@@ -612,7 +618,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white border border-zinc-150 rounded-2xl overflow-hidden shadow-sm group">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src="/src/assets/images/evguard_demo_2_1783021430096.jpg" 
+                      src={evguardDemo2} 
                       alt="실전 분사 테스트" 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
@@ -628,7 +634,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white border border-zinc-150 rounded-2xl overflow-hidden shadow-sm group">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src="/src/assets/images/evguard_demo_3_1783021444805.jpg" 
+                      src={evguardDemo3} 
                       alt="대응 훈련 현장" 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"

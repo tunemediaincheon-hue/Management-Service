@@ -20,6 +20,15 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
+import refSsuGigaLed from '../assets/images/ref_ssu_giga_led_1782845318346.jpg';
+import refDaechiLed from '../assets/images/ref_daechi_led_1782845331008.jpg';
+import refBanpoMaple from '../assets/images/ref_banpo_maple_1782845344423.jpg';
+import refYamahaStore from '../assets/images/ref_yamaha_store_1782845354312.jpg';
+import refAmoreFactory from '../assets/images/ref_amore_factory_1782845504174.jpg';
+import refAirportKiosk from '../assets/images/ref_airport_kiosk_1782845520602.jpg';
+import refDongwooFine from '../assets/images/ref_dongwoo_fine_1782845532293.jpg';
+import refInnisfreeStore from '../assets/images/ref_innisfree_store_1782845543161.jpg';
+
 interface Project {
   id: string;
   title: string;
@@ -59,7 +68,7 @@ const projectsData: Project[] = [
       'Novastar LED Controller System',
       'Real-time Video Processing Matrix'
     ],
-    image: '/src/assets/images/ref_ssu_giga_led_1782845318346.jpg',
+    image: refSsuGigaLed,
     externalLink: 'https://www.tunemedia.co.kr/portfolio/%ec%88%ad%ec%8b%a4%ed%95%99%ea%b5%90/'
   },
   {
@@ -83,7 +92,7 @@ const projectsData: Project[] = [
       'Novastar Taurus Controller',
       'Custom Steel Framing Architecture'
     ],
-    image: '/src/assets/images/ref_daechi_led_1782845331008.jpg',
+    image: refDaechiLed,
     videoUrl: 'https://www.youtube.com/embed/BPuDySMsZd8'
   },
   {
@@ -107,7 +116,7 @@ const projectsData: Project[] = [
       'Multi-channel Audio Sync Controller',
       'FHD Multi-View Hardware Matrix'
     ],
-    image: '/src/assets/images/ref_banpo_maple_1782845344423.jpg',
+    image: refBanpoMaple,
     videoUrl: 'https://www.youtube.com/embed/wiJOJa7VOdk'
   },
   {
@@ -131,7 +140,7 @@ const projectsData: Project[] = [
       'Network Alive Monitoring Daemon',
       'Full HD H.264/H.265 Media Decoder'
     ],
-    image: '/src/assets/images/ref_yamaha_store_1782845354312.jpg',
+    image: refYamahaStore,
     videoUrl: 'https://www.youtube.com/embed/c3t_Q7esQow'
   },
   {
@@ -155,7 +164,7 @@ const projectsData: Project[] = [
       'RS232/IP Device Integrated Controller',
       'Solid State Media Streamer'
     ],
-    image: '/src/assets/images/ref_amore_factory_1782845504174.jpg',
+    image: refAmoreFactory,
     videoUrl: 'http://www.tunemedia.co.kr/wp-content/uploads/2024/10/tune_%EC%95%84%EB%AA%A8%EB%A0%88%EC%98%A4%EC%82%B0_%EC%8A%A4%ED%86%A0%EB%A6%AC%EA%B0%80%EB%93%A0.mp4',
     isMp4: true
   },
@@ -180,7 +189,7 @@ const projectsData: Project[] = [
       'Safe Tunneling API Socket Interface',
       'Automatic Kiosk State Restorer'
     ],
-    image: '/src/assets/images/ref_airport_kiosk_1782845520602.jpg',
+    image: refAirportKiosk,
     videoUrl: 'https://www.youtube.com/embed/saT99H4tpFI'
   },
   {
@@ -204,7 +213,7 @@ const projectsData: Project[] = [
       'Interactive Distance Ultrasonic Sensor',
       'Media Art Playback Server'
     ],
-    image: '/src/assets/images/ref_dongwoo_fine_1782845532293.jpg',
+    image: refDongwooFine,
     videoUrl: 'https://www.youtube.com/embed/CqF1L5Wl814'
   },
   {
@@ -228,7 +237,7 @@ const projectsData: Project[] = [
       'LTE Embedded Network Router Node',
       'HTML5 Web-App Menu Board Player'
     ],
-    image: '/src/assets/images/ref_innisfree_store_1782845543161.jpg',
+    image: refInnisfreeStore,
     videoUrl: 'https://www.youtube.com/embed/sat99h4tpfI'
   }
 ];

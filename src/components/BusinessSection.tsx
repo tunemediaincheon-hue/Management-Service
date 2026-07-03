@@ -6,6 +6,12 @@
 import React, { useState } from 'react';
 import { ChevronRight, Layers, Cpu, Radio, ShieldCheck, ShieldAlert, X } from 'lucide-react';
 
+import cmsServiceThumbnail from '../assets/images/cms_service_thumbnail_1782844054984.jpg';
+import aiVisionThumbnail from '../assets/images/ai_vision_thumbnail_1782844076504.jpg';
+import smartIotThumbnail from '../assets/images/smart_iot_thumbnail_1782844091537.jpg';
+import operationServiceThumbnail from '../assets/images/operation_service_thumbnail_1782844106516.jpg';
+import evguardProduct1 from '../assets/images/evguard_product_1_1782971146270.jpg';
+
 interface BusinessSectionProps {
   onPageChange?: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => void;
 }
@@ -18,7 +24,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       id: 'cms',
       title: 'Smart Sign CMS',
       description: '디지털 사이니지를 운영관리하고 모니터링하는 컨텐츠 송출/관리 시스템',
-      image: '/src/assets/images/cms_service_thumbnail_1782844054984.jpg',
+      image: cmsServiceThumbnail,
       icon: <Layers className="w-6 h-6 text-blue-400" />,
       details: [
         '실시간 웹 기반 원격 콘텐츠 업로드 및 스케줄링',
@@ -31,7 +37,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       id: 'ai',
       title: 'Smart AI',
       description: 'AI비전 기술을 통해 사물인식, 사람인식을 활용한 대시보드서비스와 타겟 광고시스템',
-      image: '/src/assets/images/ai_vision_thumbnail_1782844076504.jpg',
+      image: aiVisionThumbnail,
       icon: <Cpu className="w-6 h-6 text-blue-400" />,
       details: [
         '실시간 AI 카메라 객체 인식 및 유동인구 맞춤형 표적 타겟팅 광고 송출',
@@ -44,7 +50,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       id: 'iot',
       title: 'Smart IoT',
       description: 'IoT를 활용하여 디바이스의 제어 및 모니터링 시스템',
-      image: '/src/assets/images/smart_iot_thumbnail_1782844091537.jpg',
+      image: smartIotThumbnail,
       icon: <Radio className="w-6 h-6 text-blue-400" />,
       details: [
         '스마트 멀티탭 및 센서를 연동한 에너지 효율 원격 전력 차단/공급',
@@ -57,7 +63,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       id: 'service',
       title: '운영 서비스',
       description: '웹, 모바일, 사이니지 등 다양한 매체/디바이스의 운영관리서비스',
-      image: '/src/assets/images/operation_service_thumbnail_1782844106516.jpg',
+      image: operationServiceThumbnail,
       icon: <ShieldCheck className="w-6 h-6 text-blue-400" />,
       details: [
         '전국 규모 현장 유지 보수망 연동 24/7 장애 지원',
@@ -70,7 +76,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       id: 'evguard',
       title: 'EVGUARD (전기차 화재 대응)',
       description: '주식회사 온리움디엠씨 협업 전기차 배터리 열폭주 대응 파괴식 침투 소방 솔루션',
-      image: '/src/assets/images/evguard_product_1_1782971146270.jpg',
+      image: evguardProduct1,
       icon: <ShieldAlert className="w-6 h-6 text-blue-400" />,
       details: [
         '특허 받은 열폭주 배터리 직접 침투 소화 노즐 기술 탑재',

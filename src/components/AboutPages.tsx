@@ -48,6 +48,15 @@ import {
 } from 'lucide-react';
 import { SiteSettings } from '../types';
 
+import skyscraperImg from '../assets/images/greetings_skyscrapers_1782840703259.jpg';
+import teamImg from '../assets/images/greetings_team_1782840720839.jpg';
+import officeImg from '../assets/images/history_smart_office_1782840758172.jpg';
+import aiHandheldImg from '../assets/images/history_ai_handheld_1782840779598.jpg';
+import cmsImg from '../assets/images/cms_service_thumbnail_1782844054984.jpg';
+import aiVisionImg from '../assets/images/ai_vision_thumbnail_1782844076504.jpg';
+import smartIotThumbnail from '../assets/images/smart_iot_thumbnail_1782844091537.jpg';
+import operationServiceThumbnail from '../assets/images/operation_service_thumbnail_1782844106516.jpg';
+
 interface AboutPagesProps {
   subPage: 'greetings' | 'org' | 'history' | 'map' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard';
   settings: SiteSettings;
@@ -55,13 +64,6 @@ interface AboutPagesProps {
 }
 
 export default function AboutPages({ subPage, settings, onBackToHome }: AboutPagesProps) {
-  // Image paths from our generated assets
-  const skyscraperImg = '/src/assets/images/greetings_skyscrapers_1782840703259.jpg';
-  const teamImg = '/src/assets/images/greetings_team_1782840720839.jpg';
-  const officeImg = '/src/assets/images/history_smart_office_1782840758172.jpg';
-  const aiHandheldImg = '/src/assets/images/history_ai_handheld_1782840779598.jpg';
-  const cmsImg = '/src/assets/images/cms_service_thumbnail_1782844054984.jpg';
-  const aiVisionImg = '/src/assets/images/ai_vision_thumbnail_1782844076504.jpg';
 
   const [activeTechPill, setActiveTechPill] = useState<string>('1-1');
   const [activeAiTechPill, setActiveAiTechPill] = useState<string>('ai-1-1');
@@ -1912,7 +1914,7 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
                 <div className="lg:col-span-7 flex items-center justify-center relative p-1">
                   <div className="relative w-full rounded-2xl overflow-hidden shadow-md border border-zinc-100 bg-white p-2">
                     <img
-                      src="/src/assets/images/smart_iot_thumbnail_1782844091537.jpg"
+                      src={smartIotThumbnail}
                       alt="맞춤형 솔루션 오프라인 맵"
                       className="w-full h-auto object-cover rounded-xl"
                       referrerPolicy="no-referrer"
@@ -2878,7 +2880,7 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
                   <div className="relative w-full rounded-2xl overflow-hidden shadow-lg border border-zinc-200 bg-white p-2">
                     <div className="relative overflow-hidden rounded-xl bg-zinc-950 aspect-[5/3]">
                       <img 
-                        src="/src/assets/images/smart_iot_thumbnail_1782844091537.jpg" 
+                        src={smartIotThumbnail} 
                         alt="3D Store Isometric Map"
                         className="w-full h-full object-cover select-none"
                         referrerPolicy="no-referrer"
@@ -3096,7 +3098,7 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
               <div className="lg:col-span-6 flex justify-center">
                 <div className="relative w-full max-w-[500px] overflow-hidden rounded-2xl shadow-md border border-zinc-100">
                   <img 
-                    src="/src/assets/images/operation_service_thumbnail_1782844106516.jpg" 
+                    src={operationServiceThumbnail} 
                     alt="미디어 운영 전문 서비스"
                     className="w-full h-auto object-cover"
                     referrerPolicy="no-referrer"
