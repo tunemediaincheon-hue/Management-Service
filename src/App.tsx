@@ -21,37 +21,55 @@ import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import AboutPages from './components/AboutPages';
 import Reference from './components/Reference';
+import EVGuardPage from './components/EVGuardPage';
+
+// ----------------------------------------------------
+// Safe localStorage wrapper to prevent crash in IFrame / sandbox
+// ----------------------------------------------------
+const safeLocalStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.warn(`localStorage.getItem failed for key "${key}":`, e);
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.warn(`localStorage.setItem failed for key "${key}":`, e);
+    }
+  }
+};
 
 export default function App() {
   // ----------------------------------------------------
   // Persistent States loaded from LocalStorage
   // ----------------------------------------------------
   const [settings, setSettings] = useState<SiteSettings>(() => {
-    const saved = localStorage.getItem('tunemedia_settings');
-    if (saved) {
-      try {
+    try {
+      const saved = safeLocalStorage.getItem('tunemedia_settings');
+      if (saved) {
         const parsed = JSON.parse(saved);
         // Check if old default title or subtitle exists, and migrate to new values
         if (parsed.heroTitle === "오프라인 공간에\n지능형 디지털 경험을 채우다" || parsed.heroTitle === "오프라인 공간에 지능형 디지털 경험을 채우다") {
           parsed.heroTitle = "고객과 함께 오프라인 공간의 가치를 높입니다.";
         }
-        if (parsed.heroSubtitle && parsed.heroSubtitle.includes("정적인 오프라인 공간을 데이터 기반의 생동감 넘치는 스마트 플레이스로")) {
-          parsed.heroSubtitle = "Tuning every moment with Tune Media_";
+        if (!parsed.heroSubtitle || parsed.heroSubtitle === "Tuning every moment with Tune Media_" || parsed.heroSubtitle.includes("정적인 오프라인 공간을 데이터 기반의 생동감 넘치는 스마트 플레이스로")) {
+          parsed.heroSubtitle = "Tuning every moment with Tune Media under ONRIUM DMC_";
         }
-        // Force update of address to correct spelling (청능대로, 논현메디컬센터)
-        if (parsed.address && (
-          parsed.address.includes("청능대호") || 
-          parsed.address.includes("메디컬센터)") || 
-          parsed.address.includes("테헤란로")
-        )) {
-          parsed.address = "인천광역시 남동구 청능대로 559, 4층 4556호 (논현동, 논현메디컬센터)";
+        // Force update of address to correct spelling and new requested location
+        if (!parsed.address || parsed.address.includes("청능대") || parsed.address.includes("메디컬센터") || parsed.address.includes("테헤란로")) {
+          parsed.address = "인천광역시 미추홀구 석정로 229, 5층 (도화동, 해정타운및jst)";
         }
         // Force update of CEO and Registration Number if old defaults
-        if (!parsed.ceo || parsed.ceo === "김툰미" || parsed.ceo === "김홍국, 이순미" || parsed.ceo.includes("지점 대표")) {
-          parsed.ceo = "인천지점대표 이순미";
+        if (!parsed.ceo || parsed.ceo === "김툰미" || parsed.ceo === "김홍국, 이순미" || parsed.ceo.includes("이순미")) {
+          parsed.ceo = "주현정";
         }
-        if (!parsed.registrationNumber || parsed.registrationNumber === "120-88-12345") {
-          parsed.registrationNumber = "211-88-80505";
+        if (!parsed.registrationNumber || parsed.registrationNumber === "120-88-12345" || parsed.registrationNumber === "211-88-80505") {
+          parsed.registrationNumber = "589-19-02880";
         }
         if (!parsed.phone || parsed.phone === "02-1234-5678" || parsed.phone === "02-546-0804") {
           parsed.phone = "010-9654-9882";
@@ -59,44 +77,88 @@ export default function App() {
         if (!parsed.email || parsed.email === "contact@tunemedia.io" || parsed.email === "yhkim@tunemedia.co.kr") {
           parsed.email = "tunemediaincheon@gmail.com";
         }
+        
+        // Brand Rebranding auto-migration
+        if (!parsed.logoText || parsed.logoText === "tunemedia" || parsed.logoText.includes("툰미디어")) {
+          parsed.logoText = "온리움디엠씨";
+        }
+        if (!parsed.logoSubText || parsed.logoSubText === "space DT solutions" || parsed.logoSubText === "tunemedai solution") {
+          parsed.logoSubText = "tunemedia solution";
+        }
+        if (!parsed.companyName || parsed.companyName.includes("툰미디어") || parsed.companyName === "주식회사 툰미디어 (tunemedia Co., Ltd.)") {
+          parsed.companyName = "주식회사 온리움디엠씨 (ONRIUM DMC Co., Ltd.)";
+        }
+        if (!parsed.metaTitle || parsed.metaTitle.includes("tunemedia") || parsed.metaTitle.includes("툰미디어")) {
+          parsed.metaTitle = "온리움디엠씨 | 온리움디엠씨 공간 DT 전문 브랜드 튠 미디어";
+        }
+        if (!parsed.metaDescription || parsed.metaDescription.includes("툰미디어는 디지털 사이니지") || parsed.metaDescription.includes("tunemedai")) {
+          parsed.metaDescription = "주식회사 온리움디엠씨는 공간 DT 전문 브랜드 튠 미디어(tunemedia)를 두고, 디지털 사이니지, AI 비전 분석, IoT 연동 센서 등을 활용하여 혁신적인 오프라인 디지털 트랜스포메이션을 제공합니다.";
+        }
+        if (!parsed.metaKeywords || parsed.metaKeywords.includes("tunemedia, 툰미디어") || parsed.metaKeywords.includes("tunemedai")) {
+          parsed.metaKeywords = "온리움디엠씨, 온리움DMC, tunemedia, 튠 미디어, 툰미디어, 공간DT, 디지털트랜스포메이션, 디지털사이니지, AI비전, 매장분석, IoT센서";
+        }
+        if (!parsed.heroBadge || parsed.heroBadge === "OFFLINE SPACE DIGITAL TRANSFORMATION" || parsed.heroBadge === "ONRIUM DMC | TUNEMEDAI SPACE DT") {
+          parsed.heroBadge = "ONRIUM DMC | TUNEMEDIA SPACE DT";
+        }
+        
         return parsed;
-      } catch (e) {
-        return DEFAULT_SETTINGS;
       }
+    } catch (e) {
+      console.error('Failed to parse tunemedia_settings from localStorage:', e);
     }
     return DEFAULT_SETTINGS;
   });
 
   const [services, setServices] = useState<ServiceItem[]>(() => {
-    const saved = localStorage.getItem('tunemedia_services');
-    return saved ? JSON.parse(saved) : DEFAULT_SERVICES;
+    try {
+      const saved = safeLocalStorage.getItem('tunemedia_services');
+      return saved ? JSON.parse(saved) : DEFAULT_SERVICES;
+    } catch (e) {
+      console.error('Failed to parse tunemedia_services from localStorage, falling back to defaults:', e);
+      return DEFAULT_SERVICES;
+    }
   });
 
   const [projects, setProjects] = useState<PortfolioItem[]>(() => {
-    const saved = localStorage.getItem('tunemedia_projects');
-    return saved ? JSON.parse(saved) : DEFAULT_PORTFOLIO;
+    try {
+      const saved = safeLocalStorage.getItem('tunemedia_projects');
+      return saved ? JSON.parse(saved) : DEFAULT_PORTFOLIO;
+    } catch (e) {
+      console.error('Failed to parse tunemedia_projects from localStorage, falling back to defaults:', e);
+      return DEFAULT_PORTFOLIO;
+    }
   });
 
   const [blogs, setBlogs] = useState<BlogPost[]>(() => {
-    const saved = localStorage.getItem('tunemedia_blogs');
-    return saved ? JSON.parse(saved) : DEFAULT_BLOGS;
+    try {
+      const saved = safeLocalStorage.getItem('tunemedia_blogs');
+      return saved ? JSON.parse(saved) : DEFAULT_BLOGS;
+    } catch (e) {
+      console.error('Failed to parse tunemedia_blogs from localStorage, falling back to defaults:', e);
+      return DEFAULT_BLOGS;
+    }
   });
 
   const [inquiries, setInquiries] = useState<Inquiry[]>(() => {
-    const saved = localStorage.getItem('tunemedia_inquiries');
-    return saved ? JSON.parse(saved) : DEFAULT_INQUIRIES;
+    try {
+      const saved = safeLocalStorage.getItem('tunemedia_inquiries');
+      return saved ? JSON.parse(saved) : DEFAULT_INQUIRIES;
+    } catch (e) {
+      console.error('Failed to parse tunemedia_inquiries from localStorage, falling back to defaults:', e);
+      return DEFAULT_INQUIRIES;
+    }
   });
 
   // UI Control states
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [currentPage, setCurrentPage] = useState<'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard'>('home');
 
   // ----------------------------------------------------
   // Save changes to LocalStorage on updates
   // ----------------------------------------------------
   useEffect(() => {
-    localStorage.setItem('tunemedia_settings', JSON.stringify(settings));
+    safeLocalStorage.setItem('tunemedia_settings', JSON.stringify(settings));
     
     // Dynamically update standard SEO metadata on the page
     if (settings.metaTitle) {
@@ -123,19 +185,19 @@ export default function App() {
   }, [settings]);
 
   useEffect(() => {
-    localStorage.setItem('tunemedia_services', JSON.stringify(services));
+    safeLocalStorage.setItem('tunemedia_services', JSON.stringify(services));
   }, [services]);
 
   useEffect(() => {
-    localStorage.setItem('tunemedia_projects', JSON.stringify(projects));
+    safeLocalStorage.setItem('tunemedia_projects', JSON.stringify(projects));
   }, [projects]);
 
   useEffect(() => {
-    localStorage.setItem('tunemedia_blogs', JSON.stringify(blogs));
+    safeLocalStorage.setItem('tunemedia_blogs', JSON.stringify(blogs));
   }, [blogs]);
 
   useEffect(() => {
-    localStorage.setItem('tunemedia_inquiries', JSON.stringify(inquiries));
+    safeLocalStorage.setItem('tunemedia_inquiries', JSON.stringify(inquiries));
   }, [inquiries]);
 
   // ----------------------------------------------------
@@ -237,6 +299,32 @@ export default function App() {
         @keyframes scaleUp {
           from { opacity: 0; transform: scale(0.96); }
           to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Wave movement keyframes */
+        @keyframes waveMove {
+          0% {
+            transform: translate3d(-90px, 0, 0);
+          }
+          100% {
+            transform: translate3d(85px, 0, 0);
+          }
+        }
+        
+        .animate-wave-slow {
+          animation: waveMove 25s cubic-bezier(.55,.5,.45,.5) infinite;
+        }
+        .animate-wave-medium {
+          animation: waveMove 18s cubic-bezier(.55,.5,.45,.5) infinite;
+          animation-delay: -2s;
+        }
+        .animate-wave-fast {
+          animation: waveMove 12s cubic-bezier(.55,.5,.45,.5) infinite;
+          animation-delay: -4s;
+        }
+        .animate-wave-base {
+          animation: waveMove 8s cubic-bezier(.55,.5,.45,.5) infinite;
+          animation-delay: -5s;
         }
         
         /* Custom scrollbar */
@@ -364,7 +452,13 @@ export default function App() {
                 onCtaClick={() => handleScrollToSection('contact')} 
               />
               
-              <IntroSection />
+              <IntroSection 
+                onEnterTuneMedia={() => handleScrollToSection('services')} 
+                onEnterEVGuard={() => {
+                  setCurrentPage('evguard');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
               
               <BusinessSection onPageChange={setCurrentPage} />
               
@@ -379,6 +473,20 @@ export default function App() {
               onBackToHome={() => {
                 setCurrentPage('home');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+            />
+          ) : currentPage === 'evguard' ? (
+            <EVGuardPage
+              settings={settings}
+              onBackToHome={() => {
+                setCurrentPage('home');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              onContactClick={() => {
+                setCurrentPage('home');
+                setTimeout(() => {
+                  handleScrollToSection('contact');
+                }, 150);
               }}
             />
           ) : (

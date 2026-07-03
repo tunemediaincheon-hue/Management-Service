@@ -4,10 +4,10 @@
  */
 
 import React, { useState } from 'react';
-import { ChevronRight, Layers, Cpu, Radio, ShieldCheck, X } from 'lucide-react';
+import { ChevronRight, Layers, Cpu, Radio, ShieldCheck, ShieldAlert, X } from 'lucide-react';
 
 interface BusinessSectionProps {
-  onPageChange?: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service') => void;
+  onPageChange?: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => void;
 }
 
 export default function BusinessSection({ onPageChange }: BusinessSectionProps) {
@@ -65,6 +65,19 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
         '맞춤형 콘텐츠 기획, 제작 및 원격 송출 편성을 대행하는 컨시어지 케어',
         '웹/모바일 하이브리드 관리 솔루션 제공'
       ]
+    },
+    {
+      id: 'evguard',
+      title: 'EVGUARD (전기차 화재 대응)',
+      description: '주식회사 온리움디엠씨 협업 전기차 배터리 열폭주 대응 파괴식 침투 소방 솔루션',
+      image: '/src/assets/images/evguard_product_1_1782971146270.jpg',
+      icon: <ShieldAlert className="w-6 h-6 text-blue-400" />,
+      details: [
+        '특허 받은 열폭주 배터리 직접 침투 소화 노즐 기술 탑재',
+        '골든타임 30초 내 신속 장비 거치 및 직접 소방 가스 주입 개시',
+        '전기차 전용 소화기 및 전위 보관함 제조 조립 인프라 완비',
+        '주식회사 온리움디엠씨 정밀 부품 설계 및 금형 기술 협업 생산 실현'
+      ]
     }
   ];
 
@@ -80,6 +93,9 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (id === 'service' && onPageChange) {
       onPageChange('smart-service');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (id === 'evguard' && onPageChange) {
+      onPageChange('evguard');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setActiveModal(id);
@@ -104,7 +120,9 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
             <div
               key={item.id}
               onClick={() => handleItemClick(item.id)}
-              className="group cursor-pointer relative rounded-2xl overflow-hidden aspect-video min-h-[220px] sm:min-h-[280px] shadow-md border border-zinc-200/50 hover:shadow-xl hover:border-blue-300 transition-all duration-500"
+              className={`group cursor-pointer relative rounded-2xl overflow-hidden aspect-video min-h-[220px] sm:min-h-[280px] shadow-md border border-zinc-200/50 hover:shadow-xl hover:border-blue-300 transition-all duration-500 ${
+                item.id === 'evguard' ? 'md:col-span-2' : ''
+              }`}
             >
               {/* Background cover image */}
               <img
@@ -178,7 +196,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-blue-600 tracking-wider font-mono uppercase">
-                      TUNEMEDIA SOLUTION
+                      ONRIUM DMC SOLUTION
                     </span>
                     <h4 className="text-xl sm:text-2xl font-black text-zinc-900 tracking-tight font-sans">
                       {item.title}

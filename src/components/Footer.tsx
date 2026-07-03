@@ -33,13 +33,13 @@ export default function Footer({ settings }: FooterProps) {
           <div className="flex flex-wrap md:justify-end gap-x-3 gap-y-1">
             <span>회사명: {settings.companyName || '주식회사 툰미디어'}</span>
             <span className="hidden sm:inline text-zinc-300">|</span>
-            <span>대표: {settings.ceo || '인천지점대표 이순미'}</span>
+            <span>대표: {settings.ceo || '주현정'}</span>
             <span className="hidden sm:inline text-zinc-300">|</span>
-            <span>사업자등록번호: {settings.registrationNumber || '211-88-80505'}</span>
+            <span>사업자등록번호: {settings.registrationNumber || '589-19-02880'}</span>
           </div>
           
           <div className="flex flex-wrap md:justify-end gap-x-3 gap-y-1">
-            <span>주소: {settings.address || '인천광역시 남동구 청능대로 559, 4층 4556호 (논현동, 논현메디컬센터)'}</span>
+            <span>주소: {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 해정타운및jst)'}</span>
           </div>
 
           <div className="flex flex-wrap md:justify-end gap-x-3 gap-y-1 mt-1 font-mono">

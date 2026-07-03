@@ -1,6 +1,6 @@
 {
   "name": "tunemedia",
-  "description": "오프라인 공간의 디지털 트랜스포메이션(DT) 전문 에이전시 툰미디어의 프리미엄 소개 사이트 및 실시간 콘텐츠 관리가 가능한 관리자 대시보드",
+  "description": "오프라인 공간의 디지털 트랜스포메이션(DT) 전문 주식회사 온리움디엠씨 예하 브랜드 튠미디어의 프리미엄 소개 사이트 및 실시간 콘텐츠 관리가 가능한 관리자 대시보드",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -13,8 +13,8 @@ interface HeaderProps {
   isAdminMode: boolean;
   scrollToSection: (id: string) => void;
   activeSection: string;
-  currentPage: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service';
-  onPageChange: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service') => void;
+  currentPage: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard';
+  onPageChange: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => void;
 }
 
 export default function Header({
@@ -29,6 +29,7 @@ export default function Header({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
+  const [isBusinessDropdownOpen, setIsBusinessDropdownOpen] = useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -39,8 +40,9 @@ export default function Header({
   }, []);
 
   const navItems = [
-    { id: 'hero', label: 'About Us', hasDropdown: true },
-    { id: 'services', label: 'Business' },
+    { id: 'hero', label: 'About Us', hasDropdown: true, dropdownType: 'about' as const },
+    { id: 'services', label: 'Business', hasDropdown: true, dropdownType: 'business' as const },
+    { id: 'evguard', label: 'EVGUARD' },
     { id: 'reference', label: 'Reference' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -48,9 +50,16 @@ export default function Header({
   const handleNavClick = (id: string) => {
     setIsMobileMenuOpen(false);
     setIsAboutDropdownOpen(false);
+    setIsBusinessDropdownOpen(false);
     
     if (id === 'reference') {
       onPageChange('reference');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (id === 'evguard') {
+      onPageChange('evguard');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -66,9 +75,10 @@ export default function Header({
     }
   };
 
-  const handleSubPageClick = (page: 'greetings' | 'org' | 'history' | 'map') => {
+  const handleSubPageClick = (page: 'greetings' | 'org' | 'history' | 'map' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => {
     setIsMobileMenuOpen(false);
     setIsAboutDropdownOpen(false);
+    setIsBusinessDropdownOpen(false);
     onPageChange(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -90,18 +100,23 @@ export default function Header({
           onClick={() => {
             setIsMobileMenuOpen(false);
             setIsAboutDropdownOpen(false);
+            setIsBusinessDropdownOpen(false);
             onPageChange('home');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }} 
           className="flex cursor-pointer flex-col justify-center select-none group"
         >
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-2">
             <span className={`text-xl font-bold tracking-wider font-sans transition-colors duration-300 ${
               isTransparent ? 'text-white' : 'text-zinc-900'
             }`}>
-              <span className="font-light">tune</span>
-              <span className="font-black">media</span>
+              <span className="font-black">{settings.logoText || '온리움디엠씨'}</span>
               <span className="text-blue-500 font-black">.</span>
+            </span>
+            <span className={`text-[10px] tracking-widest font-mono uppercase transition-colors duration-300 self-end mb-0.5 ${
+              isTransparent ? 'text-white/60' : 'text-zinc-400'
+            }`}>
+              {settings.logoSubText || 'tunemedia'}
             </span>
           </div>
         </div>
@@ -110,25 +125,34 @@ export default function Header({
         {!isAdminMode ? (
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => {
+              const isAboutActive = ['greetings', 'org', 'history', 'map'].includes(currentPage) || (currentPage === 'home' && activeSection === 'hero');
+              const isBusinessActive = ['digital-signage', 'smart-ai', 'smart-iot', 'smart-service'].includes(currentPage) || (currentPage === 'home' && activeSection === 'services');
+              const isDropdownActive = item.dropdownType === 'about' ? isAboutActive : isBusinessActive;
+
               if (item.hasDropdown) {
                 return (
                   <div 
                     key={item.id}
                     className="relative"
-                    onMouseEnter={() => setIsAboutDropdownOpen(true)}
-                    onMouseLeave={() => setIsAboutDropdownOpen(false)}
+                    onMouseEnter={() => {
+                      if (item.dropdownType === 'about') setIsAboutDropdownOpen(true);
+                      if (item.dropdownType === 'business') setIsBusinessDropdownOpen(true);
+                    }}
+                    onMouseLeave={() => {
+                      if (item.dropdownType === 'about') setIsAboutDropdownOpen(false);
+                      if (item.dropdownType === 'business') setIsBusinessDropdownOpen(false);
+                    }}
                   >
                     <button
+                      onClick={() => handleNavClick(item.id)}
                       className={`relative py-2 text-sm font-semibold transition-colors duration-300 ${
-                        currentPage !== 'home'
+                        isDropdownActive
                           ? isTransparent ? 'text-white' : 'text-blue-600'
-                          : activeSection === item.id 
-                            ? isTransparent ? 'text-white' : 'text-blue-600'
-                            : isTransparent ? 'text-white/80 hover:text-white' : 'text-zinc-600 hover:text-zinc-950'
+                          : isTransparent ? 'text-white/80 hover:text-white' : 'text-zinc-600 hover:text-zinc-950'
                       }`}
                     >
                       {item.label}
-                      {currentPage !== 'home' && (
+                      {isDropdownActive && (
                         <span className={`absolute bottom-0 left-0 h-[2px] w-full rounded-full ${
                           isTransparent ? 'bg-white' : 'bg-blue-600'
                         }`} />
@@ -136,7 +160,7 @@ export default function Header({
                     </button>
 
                     {/* Dropdown Menu - Subpage selectors */}
-                    {isAboutDropdownOpen && (
+                    {item.dropdownType === 'about' && isAboutDropdownOpen && (
                       <div className="absolute top-[32px] left-1/2 -translate-x-1/2 w-44 bg-white border border-zinc-150 rounded-lg shadow-xl py-2 flex flex-col z-50 animate-fadeIn text-left">
                         <button
                           onClick={() => handleSubPageClick('greetings')}
@@ -164,13 +188,50 @@ export default function Header({
                         </button>
                       </div>
                     )}
+
+                    {item.dropdownType === 'business' && isBusinessDropdownOpen && (
+                      <div className="absolute top-[32px] left-1/2 -translate-x-1/2 w-48 bg-white border border-zinc-150 rounded-lg shadow-xl py-2 flex flex-col z-50 animate-fadeIn text-left animate-fadeIn">
+                        <button
+                          onClick={() => handleSubPageClick('digital-signage')}
+                          className="w-full text-left px-5 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 hover:text-blue-600 transition-colors"
+                        >
+                          Smart Sign CMS
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('smart-ai')}
+                          className="w-full text-left px-5 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 hover:text-blue-600 transition-colors"
+                        >
+                          Smart AI
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('smart-iot')}
+                          className="w-full text-left px-5 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 hover:text-blue-600 transition-colors"
+                        >
+                          Smart IoT
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('smart-service')}
+                          className="w-full text-left px-5 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 hover:text-blue-600 transition-colors"
+                        >
+                          운영 서비스
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('evguard')}
+                          className="w-full text-left px-5 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 hover:text-blue-600 transition-colors border-t border-zinc-100"
+                        >
+                          EVGUARD (전기차 화재 대응)
+                        </button>
+                      </div>
+                    )}
                   </div>
                 );
               }
 
               const isItemActive = item.id === 'reference'
                 ? currentPage === 'reference'
-                : currentPage === 'home' && activeSection === item.id;
+                : item.id === 'evguard'
+                  ? currentPage === 'evguard'
+                  : currentPage === 'home' && activeSection === item.id;
 
               return (
                 <button
@@ -247,57 +308,107 @@ export default function Header({
       {/* Mobile Navigation Dropdown */}
       {isMobileMenuOpen && !isAdminMode && (
         <div className="md:hidden absolute top-20 left-0 w-full bg-white border-b border-zinc-150 py-6 px-6 flex flex-col gap-4 animate-fadeIn shadow-lg text-zinc-800">
-          {navItems.map((item) => (
-            <div key={item.id} className="flex flex-col gap-2">
-              {item.hasDropdown ? (
-                <div className="text-left py-2.5 text-base font-semibold text-zinc-650">
-                  {item.label}
-                </div>
-              ) : (
-                <button
-                  onClick={() => handleNavClick(item.id)}
-                  className={`text-left py-2.5 text-base font-semibold transition-colors ${
-                    item.id === 'reference'
-                      ? currentPage === 'reference' ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
-                      : currentPage === 'home' && activeSection === item.id 
-                        ? 'text-blue-600 font-bold' 
-                        : 'text-zinc-650 hover:text-zinc-900'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              )}
-              
-              {item.hasDropdown && (
-                <div className="pl-4 flex flex-col gap-2 border-l border-zinc-150">
+          {navItems.map((item) => {
+            const isAboutActive = ['greetings', 'org', 'history', 'map'].includes(currentPage) || (currentPage === 'home' && activeSection === 'hero');
+            const isBusinessActive = ['digital-signage', 'smart-ai', 'smart-iot', 'smart-service'].includes(currentPage) || (currentPage === 'home' && activeSection === 'services');
+            const isDropdownActive = item.dropdownType === 'about' ? isAboutActive : isBusinessActive;
+
+            return (
+              <div key={item.id} className="flex flex-col gap-2">
+                {item.hasDropdown ? (
                   <button
-                    onClick={() => handleSubPageClick('greetings')}
-                    className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'greetings' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`text-left py-2.5 text-base font-semibold transition-colors ${
+                      isDropdownActive ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
+                    }`}
                   >
-                    • 인사말
+                    {item.label}
                   </button>
+                ) : (
                   <button
-                    onClick={() => handleSubPageClick('org')}
-                    className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'org' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`text-left py-2.5 text-base font-semibold transition-colors ${
+                      item.id === 'reference'
+                        ? currentPage === 'reference' ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
+                        : item.id === 'evguard'
+                          ? currentPage === 'evguard' ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
+                          : currentPage === 'home' && activeSection === item.id 
+                            ? 'text-blue-600 font-bold' 
+                            : 'text-zinc-650 hover:text-zinc-900'
+                    }`}
                   >
-                    • 조직도
+                    {item.label}
                   </button>
-                  <button
-                    onClick={() => handleSubPageClick('history')}
-                    className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'history' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
-                  >
-                    • 연혁
-                  </button>
-                  <button
-                    onClick={() => handleSubPageClick('map')}
-                    className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'map' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
-                  >
-                    • 오시는길
-                  </button>
-                </div>
-              )}
-            </div>
-          ))}
+                )}
+                
+                {item.hasDropdown && (
+                  <div className="pl-4 flex flex-col gap-2 border-l border-zinc-150">
+                    {item.dropdownType === 'about' ? (
+                      <>
+                        <button
+                          onClick={() => handleSubPageClick('greetings')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'greetings' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • 인사말
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('org')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'org' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • 조직도
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('history')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'history' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • 연혁
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('map')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'map' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • 오시는길
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => handleSubPageClick('digital-signage')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'digital-signage' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • Smart Sign CMS
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('smart-ai')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'smart-ai' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • Smart AI
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('smart-iot')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'smart-iot' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • Smart IoT
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('smart-service')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'smart-service' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • 운영 서비스
+                        </button>
+                        <button
+                          onClick={() => handleSubPageClick('evguard')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'evguard' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                        >
+                          • EVGUARD (전기차 화재 대응)
+                        </button>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
     </header>

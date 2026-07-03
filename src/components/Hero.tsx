@@ -81,7 +81,7 @@ export default function Hero({ settings, onCtaClick }: HeroProps) {
       </div>
 
       {/* Spinning Welcome circular text badge at the bottom center */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center select-none z-10">
+      <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex flex-col items-center select-none z-20">
         <div className="relative w-28 h-28 flex items-center justify-center">
           <svg className="w-full h-full animate-[spin_12s_linear_infinite]" viewBox="0 0 100 100">
             <defs>
@@ -97,6 +97,53 @@ export default function Hero({ settings, onCtaClick }: HeroProps) {
             <div className="w-2.5 h-2.5 rounded-full bg-blue-500 shadow-lg shadow-blue-500/50 animate-pulse" />
           </div>
         </div>
+      </div>
+
+      {/* Animated waves at the bottom */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-10 pointer-events-none">
+        <svg
+          className="relative block w-full h-[40px] md:h-[70px] min-h-[40px] max-h-[100px]"
+          viewBox="0 24 150 28"
+          preserveAspectRatio="none"
+          shapeRendering="auto"
+        >
+          <defs>
+            <path
+              id="gentle-wave"
+              d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z"
+            />
+          </defs>
+          <g>
+            <use
+              href="#gentle-wave"
+              x="48"
+              y="0"
+              fill="rgba(255, 255, 255, 0.15)"
+              className="animate-wave-slow"
+            />
+            <use
+              href="#gentle-wave"
+              x="48"
+              y="3"
+              fill="rgba(255, 255, 255, 0.25)"
+              className="animate-wave-medium"
+            />
+            <use
+              href="#gentle-wave"
+              x="48"
+              y="5"
+              fill="rgba(255, 255, 255, 0.4)"
+              className="animate-wave-fast"
+            />
+            <use
+              href="#gentle-wave"
+              x="48"
+              y="7"
+              fill="#ffffff"
+              className="animate-wave-base"
+            />
+          </g>
+        </svg>
       </div>
     </section>
   );
