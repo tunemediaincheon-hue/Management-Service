@@ -4,6 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
+import { KeyRound, X } from 'lucide-react';
 import { 
   DEFAULT_SETTINGS, 
   DEFAULT_SERVICES, 
@@ -151,6 +152,9 @@ export default function App() {
 
   // UI Control states
   const [isAdminMode, setIsAdminMode] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
+  const [adminPassword, setAdminPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const [activeSection, setActiveSection] = useState('hero');
   const [currentPage, setCurrentPage] = useState<'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime'>('home');
 
@@ -264,6 +268,19 @@ export default function App() {
     setProjects(DEFAULT_PORTFOLIO);
     setBlogs(DEFAULT_BLOGS);
     setInquiries(DEFAULT_INQUIRIES);
+  };
+
+  const handleVerifyPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (adminPassword === '0624') {
+      setIsAdminMode(true);
+      setIsPasswordModalOpen(false);
+      setAdminPassword('');
+      setPasswordError('');
+      setCurrentPage('home'); // Go to home when entering admin
+    } else {
+      setPasswordError('비밀번호가 올바르지 않습니다.');
+    }
   };
 
   // Convert hex color to semi-transparent hexes for styles
@@ -431,8 +448,14 @@ export default function App() {
       <Header
         settings={settings}
         onToggleAdmin={() => {
-          setIsAdminMode(!isAdminMode);
-          setCurrentPage('home'); // Go to home when toggling admin
+          if (isAdminMode) {
+            setIsAdminMode(false);
+            setCurrentPage('home'); // Go to home when toggling admin
+          } else {
+            setAdminPassword('');
+            setPasswordError('');
+            setIsPasswordModalOpen(true);
+          }
         }}
         isAdminMode={isAdminMode}
         scrollToSection={handleScrollToSection}
@@ -518,6 +541,69 @@ export default function App() {
             onChangeInquiries={setInquiries}
             onResetDefaults={handleResetDefaults}
           />
+        </div>
+      )}
+
+      {/* Password Verification Modal */}
+      {isPasswordModalOpen && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/85 backdrop-blur-md animate-fadeIn">
+          <div className="relative w-full max-w-md p-8 bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl mx-4 text-center">
+            {/* Close button */}
+            <button 
+              onClick={() => setIsPasswordModalOpen(false)}
+              className="absolute top-4 right-4 text-zinc-500 hover:text-white transition-colors"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Icon */}
+            <div className="mx-auto w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-full flex items-center justify-center mb-4">
+              <KeyRound className="w-6 h-6 text-blue-500" />
+            </div>
+
+            {/* Text */}
+            <h3 className="text-lg font-black text-white tracking-tight">관리자 대시보드 로그인</h3>
+            <p className="text-xs text-zinc-400 mt-1 mb-6">
+              시스템 설정을 변경하기 위해 비밀번호를 입력해주세요.
+            </p>
+
+            {/* Form */}
+            <form onSubmit={handleVerifyPassword} className="space-y-4">
+              <div className="relative">
+                <input
+                  type="password"
+                  placeholder="비밀번호 입력"
+                  value={adminPassword}
+                  onChange={(e) => {
+                    setAdminPassword(e.target.value);
+                    setPasswordError('');
+                  }}
+                  className="w-full bg-zinc-950 border border-zinc-800 focus:border-blue-500 rounded-xl px-4 py-3 text-sm text-white text-center tracking-widest placeholder:tracking-normal focus:outline-none transition-colors"
+                  autoFocus
+                />
+              </div>
+
+              {passwordError && (
+                <p className="text-xs text-rose-500 font-medium animate-pulse">{passwordError}</p>
+              )}
+
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsPasswordModalOpen(false)}
+                  className="flex-1 py-3 bg-zinc-800 hover:bg-zinc-750 text-zinc-300 rounded-xl text-xs font-bold transition-colors"
+                >
+                  취소
+                </button>
+                <button
+                  type="submit"
+                  className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition-all shadow-lg shadow-blue-600/20"
+                >
+                  확인
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       )}
     </div>
