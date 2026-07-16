@@ -8,10 +8,10 @@ import { TrendingUp, Users, Factory, Sparkles, ArrowRight, ShieldAlert } from 'l
 
 interface IntroSectionProps {
   onEnterTuneMedia?: () => void;
-  onEnterEVGuard?: () => void;
+  onEnterWaterPrime?: () => void;
 }
 
-export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: IntroSectionProps) {
+export default function IntroSection({ onEnterTuneMedia, onEnterWaterPrime }: IntroSectionProps) {
   const handleTuneMediaClick = () => {
     if (onEnterTuneMedia) {
       onEnterTuneMedia();
@@ -21,9 +21,9 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
     }
   };
 
-  const handleEVGuardClick = () => {
-    if (onEnterEVGuard) {
-      onEnterEVGuard();
+  const handleWaterPrimeClick = () => {
+    if (onEnterWaterPrime) {
+      onEnterWaterPrime();
     }
   };
 
@@ -44,7 +44,7 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
               
               <div className="flex flex-col select-none">
                 <div className="flex items-baseline font-sans text-4xl sm:text-5xl md:text-6xl tracking-tight leading-none">
-                  <span className="text-zinc-900 font-extrabold">온리움디엠씨</span>
+                  <span className="text-zinc-900 font-extrabold">온리움디엔씨</span>
                   <span className="text-blue-500 font-black">.</span>
                 </div>
                 <div className="flex items-center gap-1.5 mt-3 pl-1 font-mono text-xs sm:text-sm text-zinc-400 tracking-widest uppercase">
@@ -57,21 +57,21 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
           {/* Right Column: Editorial Title and Deep Value Statement */}
           <div className="lg:col-span-7 flex flex-col justify-center">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-zinc-900 tracking-tight leading-tight font-sans mb-8">
-              Tuning every space with Onrium DMC
+              Tuning every space with Onrium D&C
             </h2>
 
             <div className="text-sm sm:text-base text-zinc-600 leading-relaxed space-y-6 font-sans max-w-2xl">
               <p>
-                주식회사 온리움디엠씨는 공간 DT 전문 브랜드 <strong>튠 미디어(Tune Media)</strong>와 전기차 화재 대응 전문 솔루션 기업인 <strong>EVGUARD(이브이가드)</strong>를 핵심 주력으로 두어, 상업공간의 혁신과 안전 생태계를 동시에 선도합니다.
+                주식회사 온리움디엔씨는 공간 DT 전문 브랜드 <strong>튠 미디어(Tune Media)</strong>와 전기차 화재 대응 전문 솔루션 기업인 <strong>WATER PRIME(워터프라임)</strong>를 핵심 주력으로 두어, 상업공간의 혁신과 안전 생태계를 동시에 선도합니다.
               </p>
               <p>
-                단순 하드웨어(HW) 공급에 그치지 않고, 다양한 파트너사들과의 마케팅 연결 및 유기적인 제휴, 독보적인 원천 기술을 바탕으로 한 <strong>고품질 하드웨어 및 솔루션 공동 제품 생산</strong> 체계를 구축하였습니다. 온리움디엠씨의 풍부한 자본 운용력과 영업 추진 네트워크를 적극 활용해 시장 장악력을 극대화하고 있습니다.
+                단순 하드웨어(HW) 공급에 그치지 않고, 다양한 파트너사들과의 마케팅 연결 및 유기적인 제휴, 독보적인 원천 기술을 바탕으로 한 <strong>고품질 하드웨어 및 솔루션 공동 제품 생산</strong> 체계를 구축하였습니다. 온리움디엔씨의 풍부한 자본 운용력과 영업 추진 네트워크를 적극 활용해 시장 장악력을 극대화하고 있습니다.
               </p>
             </div>
 
             <div className="mt-10 flex justify-end">
               <span className="text-base font-black text-blue-600 tracking-tight select-none border-b-2 border-blue-600/20 pb-1">
-                주식회사 온리움디엠씨 협업 생태계
+                주식회사 온리움디엔씨 협업 생태계
               </span>
             </div>
           </div>
@@ -82,13 +82,13 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
         <div className="mt-24 pt-16 border-t border-zinc-100">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="text-xs font-bold uppercase tracking-widest text-blue-600 font-mono bg-blue-50 px-3 py-1 rounded-full">
-              ONRIUM DMC COLLABORATION ECOSYSTEM
+              ONRIUM D&C COLLABORATION ECOSYSTEM
             </span>
             <h3 className="text-2xl sm:text-3xl font-black text-zinc-900 tracking-tight mt-4">
-              온리움디엠씨 협업 기반 밸류체인
+              온리움디엔씨 협업 기반 밸류체인
             </h3>
             <p className="text-sm sm:text-base text-zinc-500 mt-4 leading-relaxed">
-              주식회사 온리움디엠씨는 탄탄한 자본 유치 및 영업 네트워크, 마케팅 커넥션, 
+              주식회사 온리움디엔씨는 탄탄한 자본 유치 및 영업 네트워크, 마케팅 커넥션, 
               정밀 하드웨어 제조 및 공동 생산 라인을 결합하여 파트너 브랜드들의 성공적인 비즈니스 도약을 지원합니다.
             </p>
           </div>
@@ -136,7 +136,7 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
                 </div>
                 <h4 className="text-base font-bold text-zinc-900 mb-2">협업을 통한 공동 제품 생산</h4>
                 <p className="text-xs text-zinc-500 leading-relaxed">
-                  독보적인 특허 및 핵심 기술을 갖춘 파트너사와 협업하여, 온리움디엠씨 공장의 엄격한 정밀 제조 조립 품질 하에 완벽한 고성능 제품을 탄생시킵니다.
+                  독보적인 특허 및 핵심 기술을 갖춘 파트너사와 협업하여, 온리움디엔씨 공장의 엄격한 정밀 제조 조립 품질 하에 완벽한 고성능 제품을 탄생시킵니다.
                 </p>
               </div>
               <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider font-mono mt-6">
@@ -171,7 +171,7 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
                   <ArrowRight className="w-5 h-5 text-white/80 group-hover:translate-x-1.5 transition-transform" />
                 </h4>
                 <p className="text-xs sm:text-sm text-blue-100 leading-relaxed max-w-md">
-                  <strong>[클릭하여 바로입장]</strong> 온리움디엠씨의 공간 디지털 트랜스포메이션 브랜드로, 스마트 사이니지 CMS, 지능형 AI 비전 분석, 사물인터넷(IoT) 연동 공간 제어 솔루션을 통합 서비스합니다.
+                  <strong>[클릭하여 바로입장]</strong> 온리움디엔씨의 공간 디지털 트랜스포메이션 브랜드로, 스마트 사이니지 CMS, 지능형 AI 비전 분석, 사물인터넷(IoT) 연동 공간 제어 솔루션을 통합 서비스합니다.
                 </p>
               </div>
               
@@ -181,9 +181,9 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
               </div>
             </div>
 
-            {/* 5. EVGUARD (EV Fire Safety Solution) */}
+            {/* 5. WATER PRIME (EV Fire Safety Solution) */}
             <div 
-              onClick={handleEVGuardClick}
+              onClick={handleWaterPrimeClick}
               className="relative bg-gradient-to-br from-red-600 to-rose-700 text-white rounded-3xl p-8 shadow-md hover:shadow-xl hover:shadow-red-500/15 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer border border-red-500 group overflow-hidden"
             >
               {/* Glowing animated background background element */}
@@ -199,16 +199,16 @@ export default function IntroSection({ onEnterTuneMedia, onEnterEVGuard }: Intro
                   </span>
                 </div>
                 <h4 className="text-xl font-black tracking-tight mb-3 flex items-center gap-1.5">
-                  <span>EVGUARD (이브이가드)</span>
+                  <span>WATER PRIME (워터프라임)</span>
                   <ArrowRight className="w-5 h-5 text-white/80 group-hover:translate-x-1.5 transition-transform" />
                 </h4>
                 <p className="text-xs sm:text-sm text-rose-100 leading-relaxed max-w-md">
-                  <strong>[클릭하여 바로입장]</strong> 온리움디엠씨와의 공동 생산 및 영업망 협업으로 전개하는 전기차 화재 대응 전문 솔루션입니다. 열폭주 분석 기반의 전용 소화 장비로 아파트, 공공기관의 충전 구역 안전을 책임집니다.
+                  <strong>[클릭하여 바로입장]</strong> 온리움디엔씨와의 공동 생산 및 영업망 협업으로 전개하는 전기차 화재 대응 전문 솔루션입니다. 열폭주 분석 기반의 전용 소화 장비로 아파트, 공공기관의 충전 구역 안전을 책임집니다.
                 </p>
               </div>
               
               <div className="mt-8 flex items-center justify-between text-xs font-bold text-white group-hover:text-yellow-200 transition-colors border-t border-white/10 pt-4">
-                <span>EVGUARD 기술 & 솔루션 탐색하기</span>
+                <span>WATER PRIME 기술 & 솔루션 탐색하기</span>
                 <span className="text-xs font-bold">Entry &rarr;</span>
               </div>
             </div>

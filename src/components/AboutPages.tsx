@@ -44,7 +44,23 @@ import {
   RefreshCw,
   Eye,
   Database,
-  Bot
+  Bot,
+  TrendingUp,
+  Coins,
+  Target,
+  PieChart,
+  Briefcase,
+  Rocket,
+  Search,
+  Globe,
+  Heart,
+  Anchor,
+  Moon,
+  Plus,
+  Percent,
+  BarChart3,
+  HelpCircle,
+  Sparkles
 } from 'lucide-react';
 import { SiteSettings } from '../types';
 
@@ -58,7 +74,7 @@ import smartIotThumbnail from '../assets/images/smart_iot_thumbnail_178284409153
 import operationServiceThumbnail from '../assets/images/operation_service_thumbnail_1782844106516.jpg';
 
 interface AboutPagesProps {
-  subPage: 'greetings' | 'org' | 'history' | 'map' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard';
+  subPage: 'greetings' | 'org' | 'history' | 'map' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime' | 'incheon-platform';
   settings: SiteSettings;
   onBackToHome: () => void;
 }
@@ -89,6 +105,8 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
     size: '85.4MB',
     status: 'idle'
   });
+
+  const [incheonTab, setIncheonTab] = useState<'vision' | 'content' | 'market' | 'roadmap' | 'conclusion'>('vision');
 
   const iotPillDetails: Record<string, { title: string, desc: string, metric: string }> = {
     '1-1': { title: '공기질 센싱 (Air Quality)', desc: '매장 내 초미세먼지(PM2.5/PM10) 및 휘발성 유기화합물 수치를 실시간으로 정밀 측정하여, 최적의 대기 환경을 자동 관리하고 환기 설비를 연동 제어합니다.', metric: 'PM2.5 공기질 우수 (12㎍/㎥)' },
@@ -149,6 +167,8 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
             <>Business &gt; Smart IoT</>
           ) : subPage === 'smart-service' ? (
             <>Business &gt; 운영 서비스</>
+          ) : subPage === 'incheon-platform' ? (
+            <>Business &gt; 인천 관광 플랫폼</>
           ) : (
             <>About Us &gt; {subPage === 'greetings' ? '인사말' : subPage === 'org' ? '조직도' : subPage === 'history' ? '연혁' : '오시는길'}</>
           )}
@@ -188,24 +208,24 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
                   ABOUT US
                 </span>
                 <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 leading-tight mb-6">
-                  {settings.logoText || '온리움디엠씨'}를 찾아주셔서<br />감사합니다.
+                  {settings.logoText || '온리움디엔씨'}를 찾아주셔서<br />감사합니다.
                 </h3>
                 
                 <div className="text-sm sm:text-base text-zinc-650 leading-relaxed space-y-5 font-sans">
                   <p>
-                    {settings.companyName || '주식회사 온리움디엠씨'}는 공간 DT 전문 브랜드 <strong>튠미디어(tunemedai)</strong>를 중심으로 오프라인 공간의 디지털 트랜스포메이션(DT)에 선구적인 기술과 노하우를 제공해오고 있습니다.
+                    {settings.companyName || '주식회사 온리움디엔씨'}는 공간 DT 전문 브랜드 <strong>튠미디어(tunemedai)</strong>를 중심으로 오프라인 공간의 디지털 트랜스포메이션(DT)에 선구적인 기술과 노하우를 제공해오고 있습니다.
                   </p>
                   <p>
                     디지털 사이니지, 지능형 AI 비전 분석, 고효율 스마트 IoT 센싱망 기술을 융합하여 다양한 실내외 오프라인 공간의 매력을 극대화할 뿐만 아니라, 수많은 스마트 디바이스들을 안정적으로 통합 관제하고 유지보수할 수 있는 종합 솔루션을 제공합니다.
                   </p>
                   <p className="font-semibold text-zinc-800">
-                    고객의 사업을 내 일처럼 진정 어린 책임감과 전문적인 자부심으로 임하기 위해 온리움디엠씨 튠미디어 구성원들은 늘 준비되어 있습니다.
+                    고객의 사업을 내 일처럼 진정 어린 책임감과 전문적인 자부심으로 임하기 위해 온리움디엔씨 튠미디어 구성원들은 늘 준비되어 있습니다.
                   </p>
                 </div>
 
                 <div className="mt-8 text-right">
                   <p className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight">
-                    {settings.logoText || '온리움디엠씨'} 직원 일동
+                    {settings.logoText || '온리움디엔씨'} 직원 일동
                   </p>
                 </div>
               </div>
@@ -223,10 +243,10 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
                 <div className="absolute inset-0 bg-zinc-900/75 mix-blend-multiply" />
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-6 sm:p-10 z-10">
                   <p className="text-xs sm:text-sm font-bold text-blue-400 tracking-wider uppercase mb-2">
-                    왜 디지털 사이니지 공간 기획은 온리움디엠씨와 해야 할까요?
+                    왜 디지털 사이니지 공간 기획은 온리움디엔씨와 해야 할까요?
                   </p>
                   <h4 className="text-lg sm:text-2xl md:text-3xl font-extrabold text-white tracking-tight leading-snug">
-                    스마트한 공간관리의 새로운 기준, 온리움디엠씨 튠미디어
+                    스마트한 공간관리의 새로운 기준, 온리움디엔씨 튠미디어
                   </h4>
                 </div>
               </div>
@@ -238,7 +258,7 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
                     OUR BUSINESS
                   </span>
                   <h3 className="text-xl sm:text-2xl font-black text-zinc-900 mt-1.5">
-                    {settings.logoText || '온리움디엠씨'}의 사업
+                    {settings.logoText || '온리움디엔씨'}의 사업
                   </h3>
                 </div>
 
@@ -687,7 +707,7 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
                     <div>
                       <p className="text-xs font-bold text-zinc-400 uppercase tracking-wider font-mono">주소</p>
                       <p className="text-sm sm:text-base font-bold text-zinc-800 leading-relaxed mt-0.5 font-sans">
-                        {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 해정타운및jst)'}
+                        {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 행정타운 및 JST)'}
                       </p>
                     </div>
                   </div>
@@ -3495,6 +3515,614 @@ export default function AboutPages({ subPage, settings, onBackToHome }: AboutPag
 
             </div>
 
+          </div>
+        )}
+
+        {/* ==========================================
+            5. INCHEON TOURISM PLATFORM PITCH DECK & BUSINESS PLAN (인천 관광 플랫폼)
+           ========================================== */}
+        {subPage === 'incheon-platform' && (
+          <div className="animate-fadeIn space-y-12 pb-16 font-sans">
+            {/* 1. Brand Hero Header */}
+            <div className="relative overflow-hidden rounded-3xl bg-slate-950 text-white p-8 sm:p-12 md:p-16 shadow-2xl border border-slate-800">
+              {/* Abstract decorative elements */}
+              <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl -ml-20 -mb-20 pointer-events-none" />
+              
+              <div className="relative z-10 max-w-4xl space-y-6">
+                <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 text-blue-400 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider font-mono">
+                  <Sparkles className="w-4 h-4 animate-pulse text-amber-400" />
+                  <span>ONRIUM D&C • Investment Proposal</span>
+                </div>
+                
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+                  ONLIUM 인천 관광 플랫폼 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-300">구축사업</span>
+                </h1>
+                
+                <p className="text-base sm:text-lg md:text-xl text-slate-300 font-medium leading-relaxed max-w-3xl">
+                  인천의 대표 관광지인 <strong className="text-blue-300">소래포구, 구월동 로데오거리</strong>를 중심으로 야간관광·먹거리·체험·로컬상권·플랫폼 서비스를 결합한 <span className="underline decoration-blue-500 underline-offset-4 decoration-2">“스마트 관광 플랫폼” 구축</span> 투자 유치 및 정부 사업비 지원 사업계획서
+                </p>
+                
+                <div className="flex flex-wrap gap-4 pt-4 text-xs font-mono">
+                  <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl">
+                    <Building2 className="w-4 h-4 text-slate-400" />
+                    <span>발행처: 주식회사 온리움디앤씨</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl">
+                    <Target className="w-4 h-4 text-slate-400" />
+                    <span>목적: 투자유치 및 사업비 지원 유치</span>
+                  </div>
+                  <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-4 py-2 rounded-xl">
+                    <Compass className="w-4 h-4 text-slate-400" />
+                    <span>버전: v1.0 (최신규격)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Platform Concept Quick Pitch Card */}
+            <div className="bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50/50 rounded-2xl border border-zinc-150 p-6 sm:p-8 shadow-sm">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div className="lg:col-span-7 space-y-4">
+                  <span className="text-xs font-extrabold text-blue-600 bg-blue-100/60 px-3 py-1 rounded-md uppercase tracking-widest font-mono">VISION STATEMENT</span>
+                  <h3 className="text-2xl font-black text-zinc-900 leading-tight">
+                    “인천의 밤과 바다를 연결하는 플랫폼”
+                  </h3>
+                  <p className="text-zinc-600 leading-relaxed font-semibold">
+                    온리움디앤씨는 인천의 관광·상권·지역경제를 연결하는 플랫폼 기업으로 성장하고자 함. 수도권 최고의 해안 낭만지인 <span className="text-zinc-900 font-extrabold">소래포구</span>와 역동적인 도시 라이프가 살아 숨쉬는 <span className="text-zinc-900 font-extrabold">구월동 로데오거리</span>가 스마트 플랫폼 안에서 비로소 하나로 통합니다.
+                  </p>
+                </div>
+                <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+                  <div className="bg-white border border-zinc-200/80 p-5 rounded-xl shadow-sm text-center">
+                    <div className="w-10 h-10 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Anchor className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-xs font-black text-zinc-500 mb-1">소래포구 연계</h4>
+                    <p className="text-sm font-bold text-zinc-900">바다 & 수산 먹거리</p>
+                  </div>
+                  <div className="bg-white border border-zinc-200/80 p-5 rounded-xl shadow-sm text-center">
+                    <div className="w-10 h-10 bg-indigo-50 text-indigo-500 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <Moon className="w-5 h-5" />
+                    </div>
+                    <h4 className="text-xs font-black text-zinc-500 mb-1">로데오거리 연계</h4>
+                    <p className="text-sm font-bold text-zinc-900">야간 버스킹 & 쇼핑</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Interactive Pitch Deck Tabs Navigation */}
+            <div className="space-y-6">
+              <div className="flex overflow-x-auto pb-2 scrollbar-none border-b border-zinc-200 gap-2">
+                {[
+                  { id: 'vision', label: '01. 사업 비전 & 필요성', icon: Compass },
+                  { id: 'content', label: '02. 핵심 사업 & 서비스', icon: Smartphone },
+                  { id: 'market', label: '03. 시장성 & 수익모델', icon: TrendingUp },
+                  { id: 'roadmap', label: '04. 사업 전략 & 정부지원', icon: Rocket },
+                  { id: 'conclusion', label: '05. 기대효과 & 결론', icon: Award },
+                ].map((tab) => {
+                  const Icon = tab.icon;
+                  const isActive = incheonTab === tab.id;
+                  return (
+                    <button
+                      key={tab.id}
+                      onClick={() => setIncheonTab(tab.id as any)}
+                      className={`flex items-center gap-2 px-5 py-3.5 border-b-2 font-bold text-sm transition-all duration-300 whitespace-nowrap rounded-t-xl ${
+                        isActive
+                          ? 'border-blue-600 bg-blue-50/50 text-blue-600'
+                          : 'border-transparent text-zinc-500 hover:text-zinc-800 hover:bg-zinc-50'
+                      }`}
+                    >
+                      <Icon className={`w-4 h-4 ${isActive ? 'text-blue-600' : 'text-zinc-400'}`} />
+                      <span>{tab.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* 4. Tab Panel Contents */}
+              <div className="min-h-[450px]">
+                {incheonTab === 'vision' && (
+                  <div className="animate-fadeIn space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Left Block: Business Abstract */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                            <Compass className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">1. 사업 개요 (Project Summary)</h4>
+                            <p className="text-xs text-zinc-400 font-mono">ONLIUM Smart Tourism Project</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4 text-sm leading-relaxed text-zinc-600 font-medium">
+                          <div className="bg-white border border-zinc-200/80 p-4 rounded-xl">
+                            <span className="block text-xs font-bold text-blue-600 mb-1">사업명</span>
+                            <span className="text-sm font-extrabold text-zinc-900">ONLIUM 인천 관광 플랫폼 구축사업</span>
+                          </div>
+
+                          <div className="bg-white border border-zinc-200/80 p-4 rounded-xl">
+                            <span className="block text-xs font-bold text-blue-600 mb-1">사업 목적</span>
+                            <span className="text-sm text-zinc-800 font-semibold leading-relaxed block">
+                              인천의 대표 관광지인 <strong className="text-zinc-900">소래포구, 구월동 로데오거리</strong>를 중심으로 야간관광·먹거리·체험·로컬상권·플랫폼 서비스를 결합한 <strong className="text-blue-600">“스마트 관광 플랫폼” 구축</strong>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Block: Background and Opportunity */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center">
+                            <TrendingUp className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">2. 사업 배경 및 필요성</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Tourism Trend Shift & Need</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4">
+                          <p className="text-sm text-zinc-600 font-semibold leading-relaxed">
+                            최근 글로벌 관광시장은 단순 '보는 관람'에서 개인 맞춤형 <strong>'경험 중심'</strong>으로 지각 변동이 일어났습니다.
+                          </p>
+
+                          <div className="grid grid-cols-2 gap-3 text-xs font-bold">
+                            {[
+                              { label: '체험형 관광', desc: '직접 참여하는 체험' },
+                              { label: 'SNS 감성 관광', desc: '포토스팟 중심' },
+                              { label: '야간관광 활성화', desc: '밤이 아름다운 낭만' },
+                              { label: '로컬문화 체험', desc: '진짜 현지 느낌' },
+                              { label: '반려동물 동반', desc: '1500만 반려가구 선호' },
+                              { label: '지역기반 플랫폼', desc: '초밀착 소통 채널' },
+                            ].map((item, idx) => (
+                              <div key={idx} className="bg-white border border-zinc-200 p-3 rounded-xl shadow-sm">
+                                <span className="text-blue-600 block mb-0.5">• {item.label}</span>
+                                <span className="text-[10px] text-zinc-400 font-semibold">{item.desc}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="bg-indigo-50 border border-indigo-100/50 p-4 rounded-xl text-xs font-semibold text-indigo-900 space-y-1">
+                            <p className="font-extrabold text-indigo-600">인천만의 초강력 관광 인프라:</p>
+                            <p className="text-indigo-700/90 leading-relaxed">
+                              바다 야경 • 수도권 최대 야시장 인프라 • 우수한 서울/수도권 교통 접근성 • 글로벌 공항 관문이라는 압도적 이점이 존재하나, 이를 매끄럽게 연결할 <strong>통합 플랫폼 부재</strong>로 관광객 이탈 가속화. 이를 스마트 기술로 혁신합니다.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Full-width Vision Block */}
+                    <div className="relative overflow-hidden rounded-2xl bg-zinc-900 text-white p-8 border border-zinc-800">
+                      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-48 h-48 bg-blue-500/10 rounded-full blur-2xl pointer-events-none" />
+                      <div className="max-w-3xl space-y-4">
+                        <span className="text-xs font-extrabold text-blue-400 font-mono tracking-widest block">— 03. BUSINESS VISION</span>
+                        <h4 className="text-xl sm:text-2xl font-black">
+                          “인천의 밤과 바다를 연결하는 플랫폼”
+                        </h4>
+                        <p className="text-sm text-zinc-400 leading-relaxed font-semibold">
+                          온리움디앤씨는 인천의 관광·상권·지역경제를 연결하는 플랫폼 기업으로 성장하고자 함.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {incheonTab === 'content' && (
+                  <div className="animate-fadeIn space-y-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                      {/* Left Column: Soraepogu */}
+                      <div className="lg:col-span-6 bg-white border border-zinc-200/80 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+                        <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center">
+                              <Anchor className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-base font-black text-zinc-900">① 소래포구 스마트 관광 플랫폼</h4>
+                              <p className="text-xs text-zinc-400 font-mono">Soraepogu Oceanic Hub</p>
+                            </div>
+                          </div>
+                          <span className="text-xs bg-blue-100 text-blue-700 px-2.5 py-1 rounded-full font-bold">오션 라이프</span>
+                        </div>
+
+                        <p className="text-sm text-zinc-500 font-semibold leading-relaxed">
+                          해양 경관과 신선한 미식이 살아 숨 쉬는 수도권의 안식처 소래포구를 현대적인 모바일 가상 투어와 실질 예약 결제 채널로 튜닝합니다.
+                        </p>
+
+                        <div className="space-y-3 font-semibold">
+                          {[
+                            { title: '수산시장 실시간 연계', desc: '오늘 잡힌 신선 수산 시세 확인 및 사전 정량 주문/예약' },
+                            { title: 'AI 기반 맞춤형 맛집 추천', desc: '협력 횟집, 칼국수 전문점, 로컬 포차 데이터 스캔 가이드' },
+                            { title: '인스타그래머블 감성카페 탐색', desc: '바다 전망 루프탑 카페 및 테마 카페 공간 가이드라인' },
+                            { title: '바다 야경 및 감성 둘레길 코스', desc: '소래철교부터 해오름공원까지 잇는 맞춤 밤바다 도보 패스' },
+                            { title: '반려동물 친화 복합 공간 매핑', desc: '반려견 동반 가능 식당, 카페, 해변 산책로 완벽 표시' },
+                            { title: '실시간 상점 라이브 커머스', desc: '소래포구 현장의 역동적인 생선 시연 및 특산품 온라인 특별 판매' }
+                          ].map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-3 bg-zinc-50 p-3 rounded-xl border border-zinc-100 hover:border-zinc-200 transition-colors">
+                              <CheckCircle2 className="w-4 h-4 text-blue-500 flex-shrink-0 mt-0.5" />
+                              <div className="text-xs">
+                                <p className="font-extrabold text-zinc-800">{item.title}</p>
+                                <p className="text-zinc-500 mt-0.5 font-medium">{item.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right Column: Rodeo Street */}
+                      <div className="lg:col-span-6 bg-white border border-zinc-200/80 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+                        <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 bg-indigo-50 text-indigo-500 rounded-xl flex items-center justify-center">
+                              <Moon className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-base font-black text-zinc-900">② 구월동 로데오 야간관광 플랫폼</h4>
+                              <p className="text-xs text-zinc-400 font-mono">Rodeo Nightlife Center</p>
+                            </div>
+                          </div>
+                          <span className="text-xs bg-indigo-100 text-indigo-700 px-2.5 py-1 rounded-full font-bold">도심 라이프</span>
+                        </div>
+
+                        <p className="text-sm text-zinc-500 font-semibold leading-relaxed">
+                          인천 최대 젊음의 도심 거리인 구월 로데오거리를 화려한 빛과 야간 예술, 라이브 상권 활성화 중심지로 재탄생시킵니다.
+                        </p>
+
+                        <div className="space-y-3 font-semibold">
+                          {[
+                            { title: '야간 안심 미식/술집 지도', desc: '테마별 핫플레이스 대기 시간 확인 및 단체 예약 간편화' },
+                            { title: '길거리 예술 버스킹 예약제', desc: '로컬 청년 뮤지션 무료 공연 정보 및 팁 전달 스마트 연계' },
+                            { title: '주말 야간 플리마켓 연동', desc: '인천 로컬 창작자들의 유니크한 수공예품 모바일 쇼케이스' },
+                            { title: '로컬 브랜드 팝업스토어 제휴', desc: '성공률 높은 로컬 요식 스타트업 사전 선호도 분석 및 쿠폰 배포' },
+                            { title: '온리움 스마트 핫딜 쿠폰', desc: '유동 인구 밀집 시간대 타겟팅 기반 초정밀 게릴라 할인 서비스' },
+                            { title: '상인-관광객 크로스 SNS 챌린지', desc: '해시태그 인증 기반 주말 무료 주차권, 특별 어메니티 지급 프로모션' }
+                          ].map((item, idx) => (
+                            <div key={idx} className="flex items-start gap-3 bg-zinc-50 p-3 rounded-xl border border-zinc-100 hover:border-zinc-200 transition-colors">
+                              <CheckCircle2 className="w-4 h-4 text-indigo-500 flex-shrink-0 mt-0.5" />
+                              <div className="text-xs">
+                                <p className="font-extrabold text-zinc-800">{item.title}</p>
+                                <p className="text-zinc-500 mt-0.5 font-medium">{item.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Feature Architecture Grid */}
+                    <div className="bg-slate-50 border border-zinc-200 rounded-2xl p-6 sm:p-8 space-y-6">
+                      <div className="text-center max-w-xl mx-auto space-y-2">
+                        <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-full font-mono uppercase">System Architecture</span>
+                        <h4 className="text-lg font-black text-zinc-900">플랫폼 모바일 어플리케이션 기능 아키텍처</h4>
+                        <p className="text-xs text-zinc-400">유기적으로 상호작용하는 사용자 및 사업자 상생 시스템 구조</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Users */}
+                        <div className="bg-white border border-zinc-200/60 p-5 rounded-xl space-y-3 shadow-sm">
+                          <span className="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-black rounded-lg">For Users (사용자 앱 주요 기능)</span>
+                          <ul className="text-xs text-zinc-600 space-y-2 font-semibold">
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">지능형 관광코스 추천:</strong> 테마별/소요시간별 드라이브 및 도보 동선 설계</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">실시간 혼잡도/웨이팅 매핑:</strong> 주말 수산시장 및 음식점 대기 열 실시간 확인</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">원스톱 예약 & 통합 간편 결제:</strong> 숙소, 미식, 체험 프로그램 사전 예약 연동</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">모바일 쿠폰 지갑:</strong> 로데오 상가 제휴 할인권 자동 취득 및 교환</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">반려견 세이프존 필터링:</strong> 전용 운동장, 반려견 보관함, 동반 가능 장소 맞춤 정보</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">심야 야간 특별 큐레이션:</strong> 심야 응급 약국, 24시간 가동 라이프라인 및 맛집 실시간 안내</li>
+                          </ul>
+                        </div>
+                        {/* Owners */}
+                        <div className="bg-white border border-zinc-200/60 p-5 rounded-xl space-y-3 shadow-sm">
+                          <span className="inline-block px-3 py-1 bg-zinc-100 text-zinc-800 text-xs font-black rounded-lg">For Business Owners (사업자 웹 주요 기능)</span>
+                          <ul className="text-xs text-zinc-600 space-y-2 font-semibold">
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">초밀착 타겟형 광고 솔루션:</strong> 방문 고객 특징별 배너 노출 및 알림 톡 발송</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">실시간 원격 예약 관리:</strong> 실시간 테이블 현황 매핑 및 예약 부도(No-Show) 제어</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">게릴라성 이벤트 홍보창:</strong> 비선호 타임라인 내 실시간 초특가 타임 세일 자동 게재</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">통합 라이브커머스 제어센터:</strong> 수산물 경매 현황 및 로컬 제품 스마트폰 간편 스트리밍</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">상권 정밀 매출 데이터 분석:</strong> 성별/연령별 구매 결제 흐름 및 동선 단절 분석 리포트</li>
+                            <li className="flex items-center gap-2">• <strong className="text-zinc-800">소상공인 공동 원부자재 역경매:</strong> 식자재 조달을 위한 플랫폼 내 공동구매 지원망 제공</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {incheonTab === 'market' && (
+                  <div className="animate-fadeIn space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Market Potential Analysis */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                            <Search className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">1. 시장성 분석 (Market Feasibility)</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Target Market Strengths</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4 font-semibold text-sm">
+                          <p className="text-zinc-600 leading-relaxed text-xs">
+                            인천의 지리적 환경과 신성장 산업 단지의 결합은 플랫폼 성장에 전무후무한 최상의 기회를 제공합니다.
+                          </p>
+
+                          <div className="space-y-3">
+                            <div className="flex items-start gap-2 text-xs">
+                              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-black text-[10px] mt-0.5">강점 1</span>
+                              <p className="text-zinc-700"><strong className="text-zinc-900">수도권 1시간 생활권 교통망:</strong> 서울 경기 포함 2,600만 거대 배후 수요가 즉각 주말 유입되는 최상의 접근성</p>
+                            </div>
+                            <div className="flex items-start gap-2 text-xs">
+                              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-black text-[10px] mt-0.5">강점 2</span>
+                              <p className="text-zinc-700"><strong className="text-zinc-900">인천공항 관문 및 자유구역:</strong> 송도 국제도시를 비롯해 연간 해외 입국객들의 최초 로컬 관광 기착지 역할</p>
+                            </div>
+                            <div className="flex items-start gap-2 text-xs">
+                              <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded font-black text-[10px] mt-0.5">강점 3</span>
+                              <p className="text-zinc-700"><strong className="text-zinc-900">풍부한 레전드 로컬 유산:</strong> 월미도, 차이나타운, 송도 센트럴파크, 소래포구를 아우르는 인천 대표 대규모 고유 관광 수요 상시 확보</p>
+                            </div>
+                          </div>
+
+                          <div className="bg-white border border-zinc-200 p-4 rounded-xl space-y-2">
+                            <span className="text-xs text-zinc-400 block font-bold font-mono">CORE TARGET SEGMENT (핵심 고객군)</span>
+                            <div className="flex flex-wrap gap-2 text-xs">
+                              <span className="bg-zinc-100 text-zinc-800 px-2.5 py-1 rounded-lg">2040 청년세대</span>
+                              <span className="bg-zinc-100 text-zinc-800 px-2.5 py-1 rounded-lg">감성 커플 관광객</span>
+                              <span className="bg-zinc-100 text-zinc-800 px-2.5 py-1 rounded-lg">반려동물 친화 가족</span>
+                              <span className="bg-zinc-100 text-zinc-800 px-2.5 py-1 rounded-lg">수도권 힐링 여행객</span>
+                              <span className="bg-zinc-100 text-zinc-800 px-2.5 py-1 rounded-lg">해외 K-컬처 체험객</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Revenue Model */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center">
+                            <Coins className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">2. 다각화된 수익 모델 (Revenue Streams)</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Robust Business Profitability</p>
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 font-semibold text-xs">
+                          {/* Platform Profit */}
+                          <div className="bg-white border border-zinc-200 p-4 rounded-xl space-y-3">
+                            <span className="text-xs font-black text-blue-600 border-b border-zinc-150 pb-1.5 block">① 플랫폼 원격 이익 수수료</span>
+                            <ul className="space-y-1.5 text-zinc-600">
+                              <li>• <strong className="text-zinc-800">초정밀 오프라인 매장 광고:</strong> 상점 상단 노출 및 쿠폰 발행 광고비 수주</li>
+                              <li>• <strong className="text-zinc-800">예약 및 결제 거래 수수료:</strong> 숙소, 미식, 체험 결제당 2~5% 수수료</li>
+                              <li>• <strong className="text-zinc-800">온리움 안심 패스 멤버십:</strong> 무제한 커피 혜택 제공형 유료 구독 서비스</li>
+                              <li>• <strong className="text-zinc-800">라이브커머스 판매 연동:</strong> 경매 및 소규모 소상공인 실시간 직판매 대행 수수료</li>
+                            </ul>
+                          </div>
+                          {/* Additional Revenue */}
+                          <div className="bg-white border border-zinc-200 p-4 rounded-xl space-y-3">
+                            <span className="text-xs font-black text-indigo-600 border-b border-zinc-150 pb-1.5 block">② 추가 오프라인 확장 이익</span>
+                            <ul className="space-y-1.5 text-zinc-600">
+                              <li>• <strong className="text-zinc-800">지자체 연동 축제 위탁 대행:</strong> 지자체 공공 행사 기획 및 시스템 운영 용역</li>
+                              <li>• <strong className="text-zinc-800">홍보 홍보물 제작 및 퍼블리싱:</strong> 상인 맞춤형 디지털 콘텐츠 및 SNS 특별 광고 대행</li>
+                              <li>• <strong className="text-zinc-800">로컬 특산품 PB 브랜드 유통:</strong> 소래포구 브랜딩 꽃게, 새우 등 간편 밀키트 패키지 판매</li>
+                              <li>• <strong className="text-zinc-800">모듈스테이 오프라인 지분:</strong> 온리움 자체 관광 숙박 모듈 설치에 의한 객실 이익 확보</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {incheonTab === 'roadmap' && (
+                  <div className="animate-fadeIn space-y-8">
+                    {/* Roadmap Steps */}
+                    <div className="bg-white border border-zinc-200/80 rounded-2xl p-6 sm:p-8 space-y-6 shadow-sm">
+                      <div className="text-center max-w-xl mx-auto space-y-2">
+                        <span className="text-xs font-bold text-blue-600 bg-blue-100 px-2.5 py-1 rounded-full font-mono uppercase">BUSINESS MILESTONES</span>
+                        <h4 className="text-lg font-black text-zinc-900">4단계 스마트 사업 추진 로드맵</h4>
+                        <p className="text-xs text-zinc-400">SNS 사전 브랜딩부터 플랫폼 출시 및 스마트 숙박으로의 연계 전략</p>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                          { step: '1단계', title: 'SNS 관광 채널 고도화', desc: '유튜브, 인스타그램, 숏폼 등 선행 SNS 채널 빌드업 및 마니아층 1만 명 이상 확보하여 관광 트렌드 사전 지배' },
+                          { step: '2단계', title: '지역 상점 오프라인 제휴', desc: '소래포구 수산 상점 50개, 구월 로데오 감성 카페 30개, 숙박 사업장 20개 등 주요 거점 매장 100% 실시간 협력사 확보' },
+                          { step: '3단계', title: 'ONLIUM 전용 앱 구축', desc: '정밀 예약, 로컬 특화 쿠폰, AI 스마트 큐레이션 알고리즘, 빅데이터 지도를 종합한 올인원 클라우드 앱 런칭' },
+                          { step: '4단계', title: '투자 및 모듈스테이 확장', desc: '관광형 모듈스테이(자체 오프라인 안전 숙소) 공간 전개, 전국 주요 해양 도시 플랫폼 확장 가동 및 프랜차이즈화 단행' }
+                        ].map((item, idx) => (
+                          <div key={idx} className="bg-zinc-50 border border-zinc-150 p-5 rounded-xl space-y-3 relative hover:shadow-md transition-shadow">
+                            <span className="absolute top-4 right-4 text-3xl font-black text-zinc-200 font-mono">{idx + 1}</span>
+                            <span className="inline-block px-2.5 py-0.5 bg-blue-600 text-white text-[10px] font-black rounded-md">{item.step}</span>
+                            <h5 className="text-sm font-black text-zinc-900 pr-6">{item.title}</h5>
+                            <p className="text-xs text-zinc-500 leading-relaxed font-semibold">{item.desc}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Government Support Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Left: Areas of support */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                            <Globe className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">지원 가능 분야</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Supportable Fields</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-3 text-xs font-semibold">
+                          {[
+                            { agency: '인천관광공사', desc: '야간 관광 특화 도시 지원금, 관광 아이디어 혁신 파트너십 예산' },
+                            { agency: '관광벤처사업', desc: '디지털 융합형 혁신 관광 벤처 선정, 사업화 자금 및 맞춤 글로벌 컨설팅 지원' },
+                            { agency: '스마트관광', desc: '전통시장 및 로컬 소상공인 스마트 상점 기술 도입용 보조금 수혜 연계' },
+                            { agency: '지역상권 활성화', desc: '로컬 상권 활성화 사업 연동 및 제휴 할인권 발송 솔루션 지원' },
+                            { agency: '청년창업지원', desc: '로컬 크리에이터 인큐베이팅 지원, 지역 청년 고용 창출 및 세제 혜택' },
+                            { agency: '콘텐츠 제작지원', desc: '인천 홍보 동영상, 숏폼 채널 기획 개발을 위한 무상 공모 사업 자금 확보' }
+                          ].map((item, idx) => (
+                            <div key={idx} className="bg-white border border-zinc-200 p-4 rounded-xl space-y-1">
+                              <span className="text-blue-600 block font-extrabold text-xs">{item.agency}</span>
+                              <p className="text-zinc-500 font-medium">{item.desc}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Right: Key Investment Merits */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center">
+                            <Target className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">투자유치 포인트</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Strategic Investment Merits</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-3 font-semibold text-xs">
+                          {[
+                            { title: '플랫폼 기반 반복수익', desc: '상점 정기 광고, 예약 거래 수수료, 구독 멤버십을 결합한 지속 가능하고 안정적인 반복 매출 흐름' },
+                            { title: '지역관광 성장성', desc: '바다 야경 및 풍부한 먹거리 인프라와 결합한 고부가 가치 관광 콘텐츠 확장 역량' },
+                            { title: '야간관광 시장 확대', desc: '구월동 로데오거리 밤거리 버스킹 및 야간 축제 등 수도권 최대의 야간 관광 특화 거점 활성화' },
+                            { title: '수도권 관광 수요', desc: '수도권 2,600만 거대 배후 수요의 주말 해양 및 도심 밀착 유입 접근성 극대화' },
+                            { title: '반려동물 관광시장 성장', desc: '1,500만 반려가구가 열광하는 반려동물 친화 매장, 안전 산책 코스 정보 완벽 연계' }
+                          ].map((item, idx) => (
+                            <div key={idx} className="bg-white border border-zinc-200 p-4 rounded-xl flex items-start gap-3">
+                              <Check className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
+                              <div>
+                                <strong className="text-zinc-900 block">{item.title}</strong>
+                                <span className="text-zinc-500 font-medium">{item.desc}</span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {incheonTab === 'conclusion' && (
+                  <div className="animate-fadeIn space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Left Block: Expected Effects */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                            <Award className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">1. 기대 효과 (Expected Outcomes)</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Socio-Economic Positive Impacts</p>
+                          </div>
+                        </div>
+
+                        <div className="space-y-4 text-xs font-semibold">
+                          <div className="bg-white border border-zinc-200/80 p-4 rounded-xl space-y-3">
+                            <div className="flex items-center gap-2 border-b border-zinc-100 pb-2">
+                              <span className="w-2.5 h-2.5 bg-blue-600 rounded-full" />
+                              <span className="text-blue-600 block font-black text-sm">지역경제 활성화</span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-2 text-zinc-700 font-medium">
+                              <div className="bg-zinc-50 p-2 rounded-lg border border-zinc-100 flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>관광객 증가</span>
+                              </div>
+                              <div className="bg-zinc-50 p-2 rounded-lg border border-zinc-100 flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>상권 활성화</span>
+                              </div>
+                              <div className="bg-zinc-50 p-2 rounded-lg border border-zinc-100 flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>청년창업 확대</span>
+                              </div>
+                              <div className="bg-zinc-50 p-2 rounded-lg border border-zinc-100 flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>지역 일자리 창출</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-white border border-zinc-200/80 p-4 rounded-xl space-y-3">
+                            <div className="flex items-center gap-2 border-b border-zinc-100 pb-2">
+                              <span className="w-2.5 h-2.5 bg-indigo-600 rounded-full" />
+                              <span className="text-indigo-600 block font-black text-sm">플랫폼 성장</span>
+                            </div>
+                            <div className="space-y-2 text-zinc-700 font-medium">
+                              <div className="bg-zinc-50 p-2.5 rounded-lg border border-zinc-100 flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>인천 대표 관광 플랫폼 구축</span>
+                              </div>
+                              <div className="bg-zinc-50 p-2.5 rounded-lg border border-zinc-100 flex items-center gap-1.5">
+                                <Check className="w-3.5 h-3.5 text-emerald-500" />
+                                <span>전국 관광 플랫폼 확장 기반 확보</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Block: Expansion Timeline */}
+                      <div className="bg-zinc-50 border border-zinc-150 p-6 sm:p-8 rounded-2xl space-y-6">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center">
+                            <Activity className="w-5 h-5" />
+                          </div>
+                          <div>
+                            <h4 className="text-lg font-black text-zinc-900">2. 향후 단계적 확장 계획</h4>
+                            <p className="text-xs text-zinc-400 font-mono">Future Visionary Roadmap</p>
+                          </div>
+                        </div>
+
+                        <div className="relative border-l border-zinc-200 pl-6 ml-3 space-y-5">
+                          {[
+                            { phase: '1차 (초기 거점 확보)', title: '인천 스마트 관광 플랫폼 완비', desc: '소래포구 및 구월 로데오 상인 결사 연대 및 빅데이터 모바일 어플리케이션 베타 서비스 성공적인 구동 완료' },
+                            { phase: '2차 (공간 가치 융합)', title: '관광형 안심 모듈스테이 운영', desc: '오프라인 공간에 스마트 안전 시설물이 가미된 온리움 독점 글램핑/모듈러 리조트형 체류 시설 구축 개시' },
+                            { phase: '3차 (전국 관광 거점 연계)', title: '대한민국 로컬 관광망 무한 확장', desc: '제주도, 동해안, 남해 오션뷰 벨트 상인회와 라이센스 연동 및 플랫폼 전국 허브 네트워크화 달성' },
+                            { phase: '4차 (글로벌 스마트 관광 도약)', title: '인바운드 외국인 맞춤형 서비스 런칭', desc: '다국어 번역, 모바일 간편 결제 편의, 글로벌 컨시어지를 가미해 해외 관광객을 인천 로컬 골목으로 직접 안내' }
+                          ].map((item, idx) => (
+                            <div key={idx} className="relative text-xs">
+                              <span className="absolute -left-[31px] top-1 w-2.5 h-2.5 rounded-full bg-indigo-500 border-2 border-white ring-4 ring-indigo-100" />
+                              <span className="text-[10px] font-black text-indigo-600 uppercase font-mono block">{item.phase}</span>
+                              <h5 className="font-extrabold text-zinc-900 mt-0.5">{item.title}</h5>
+                              <p className="text-zinc-500 mt-1 font-medium leading-relaxed">{item.desc}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bottom Final Word Card */}
+                    <div className="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-2xl border border-slate-800 p-8 text-center space-y-6">
+                      <div className="w-12 h-12 bg-blue-500/15 text-blue-400 rounded-full flex items-center justify-center mx-auto">
+                        <Award className="w-6 h-6" />
+                      </div>
+                      
+                      <div className="max-w-2xl mx-auto space-y-3">
+                        <h4 className="text-xl sm:text-2xl font-black">“지역·상권·관광·플랫폼을 연결하는 스마트 관광 플랫폼 기업”</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed font-semibold">
+                          주식회사 온리움디앤씨는 단순 관광회사가 아니라, <strong>“지역·상권·관광·플랫폼을 연결하는 스마트 관광 플랫폼 기업”</strong>으로 성장하고자 합니다. 인천의 바다와 도시, 야간관광과 로컬문화를 연결하여 지속가능한 관광 생태계를 활기차게 구축하겠습니다.
+                        </p>
+                      </div>
+
+                      <div className="pt-2">
+                        <span className="text-xs bg-slate-800/80 border border-slate-700/80 px-4 py-2 rounded-xl text-slate-300 font-bold tracking-wider">
+                          주식회사 온리움디앤씨 대표이사 및 임직원 일동
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         )}
       </div>

@@ -21,7 +21,7 @@ import Footer from './components/Footer';
 import AdminPanel from './components/AdminPanel';
 import AboutPages from './components/AboutPages';
 import Reference from './components/Reference';
-import EVGuardPage from './components/EVGuardPage';
+import WaterPrimePage from './components/WaterPrimePage';
 
 // ----------------------------------------------------
 // Safe localStorage wrapper to prevent crash in IFrame / sandbox
@@ -57,12 +57,12 @@ export default function App() {
         if (parsed.heroTitle === "오프라인 공간에\n지능형 디지털 경험을 채우다" || parsed.heroTitle === "오프라인 공간에 지능형 디지털 경험을 채우다") {
           parsed.heroTitle = "고객과 함께 오프라인 공간의 가치를 높입니다.";
         }
-        if (!parsed.heroSubtitle || parsed.heroSubtitle === "Tuning every moment with Tune Media_" || parsed.heroSubtitle.includes("정적인 오프라인 공간을 데이터 기반의 생동감 넘치는 스마트 플레이스로")) {
-          parsed.heroSubtitle = "Tuning every moment with Tune Media under ONRIUM DMC_";
+        if (!parsed.heroSubtitle || parsed.heroSubtitle === "Tuning every moment with Tune Media_" || parsed.heroSubtitle.includes("정적인 오프라인 공간을 데이터 기반의 생동감 넘치는 스마트 플레이스로") || parsed.heroSubtitle.includes("ONRIUM DMC")) {
+          parsed.heroSubtitle = "Tuning every moment with Tune Media under ONRIUM D&C_";
         }
         // Force update of address to correct spelling and new requested location
-        if (!parsed.address || parsed.address.includes("청능대") || parsed.address.includes("메디컬센터") || parsed.address.includes("테헤란로")) {
-          parsed.address = "인천광역시 미추홀구 석정로 229, 5층 (도화동, 해정타운및jst)";
+        if (!parsed.address || parsed.address.includes("청능대") || parsed.address.includes("메디컬센터") || parsed.address.includes("테헤란로") || parsed.address.includes("해정타운")) {
+          parsed.address = "인천광역시 미추홀구 석정로 229, 5층 (도화동, 행정타운 및 JST)";
         }
         // Force update of CEO and Registration Number if old defaults
         if (!parsed.ceo || parsed.ceo === "김툰미" || parsed.ceo === "김홍국, 이순미" || parsed.ceo.includes("이순미")) {
@@ -79,26 +79,26 @@ export default function App() {
         }
         
         // Brand Rebranding auto-migration
-        if (!parsed.logoText || parsed.logoText === "tunemedia" || parsed.logoText.includes("툰미디어")) {
-          parsed.logoText = "온리움디엠씨";
+        if (!parsed.logoText || parsed.logoText === "tunemedia" || parsed.logoText.includes("툰미디어") || parsed.logoText.includes("온리움디엠씨")) {
+          parsed.logoText = "온리움디엔씨";
         }
         if (!parsed.logoSubText || parsed.logoSubText === "space DT solutions" || parsed.logoSubText === "tunemedai solution") {
           parsed.logoSubText = "tunemedia solution";
         }
-        if (!parsed.companyName || parsed.companyName.includes("툰미디어") || parsed.companyName === "주식회사 툰미디어 (tunemedia Co., Ltd.)") {
-          parsed.companyName = "주식회사 온리움디엠씨 (ONRIUM DMC Co., Ltd.)";
+        if (!parsed.companyName || parsed.companyName.includes("툰미디어") || parsed.companyName === "주식회사 툰미디어 (tunemedia Co., Ltd.)" || parsed.companyName.includes("온리움디엠씨") || parsed.companyName.includes("ONRIUM DMC")) {
+          parsed.companyName = "주식회사 온리움디엔씨 (ONRIUM D&C Co., Ltd.)";
         }
-        if (!parsed.metaTitle || parsed.metaTitle.includes("tunemedia") || parsed.metaTitle.includes("툰미디어")) {
-          parsed.metaTitle = "온리움디엠씨 | 온리움디엠씨 공간 DT 전문 브랜드 튠 미디어";
+        if (!parsed.metaTitle || parsed.metaTitle.includes("tunemedia") || parsed.metaTitle.includes("툰미디어") || parsed.metaTitle.includes("온리움디엠씨")) {
+          parsed.metaTitle = "온리움디엔씨 | 온리움디엔씨 공간 DT 전문 브랜드 튠 미디어";
         }
-        if (!parsed.metaDescription || parsed.metaDescription.includes("툰미디어는 디지털 사이니지") || parsed.metaDescription.includes("tunemedai")) {
-          parsed.metaDescription = "주식회사 온리움디엠씨는 공간 DT 전문 브랜드 튠 미디어(tunemedia)를 두고, 디지털 사이니지, AI 비전 분석, IoT 연동 센서 등을 활용하여 혁신적인 오프라인 디지털 트랜스포메이션을 제공합니다.";
+        if (!parsed.metaDescription || parsed.metaDescription.includes("툰미디어는 디지털 사이니지") || parsed.metaDescription.includes("tunemedai") || parsed.metaDescription.includes("온리움디엠씨")) {
+          parsed.metaDescription = "주식회사 온리움디엔씨는 공간 DT 전문 브랜드 튠 미디어(tunemedia)를 두고, 디지털 사이니지, AI 비전 분석, IoT 연동 센서 등을 활용하여 혁신적인 오프라인 디지털 트랜스포메이션을 제공합니다.";
         }
-        if (!parsed.metaKeywords || parsed.metaKeywords.includes("tunemedia, 툰미디어") || parsed.metaKeywords.includes("tunemedai")) {
-          parsed.metaKeywords = "온리움디엠씨, 온리움DMC, tunemedia, 튠 미디어, 툰미디어, 공간DT, 디지털트랜스포메이션, 디지털사이니지, AI비전, 매장분석, IoT센서";
+        if (!parsed.metaKeywords || parsed.metaKeywords.includes("tunemedia, 툰미디어") || parsed.metaKeywords.includes("tunemedai") || parsed.metaKeywords.includes("온리움디엠씨") || parsed.metaKeywords.includes("온리움DMC")) {
+          parsed.metaKeywords = "온리움디엔씨, 온리움D&C, tunemedia, 튠 미디어, 툰미디어, 공간DT, 디지털트랜스포메이션, 디지털사이니지, AI비전, 매장분석, IoT센서";
         }
-        if (!parsed.heroBadge || parsed.heroBadge === "OFFLINE SPACE DIGITAL TRANSFORMATION" || parsed.heroBadge === "ONRIUM DMC | TUNEMEDAI SPACE DT") {
-          parsed.heroBadge = "ONRIUM DMC | TUNEMEDIA SPACE DT";
+        if (!parsed.heroBadge || parsed.heroBadge === "OFFLINE SPACE DIGITAL TRANSFORMATION" || parsed.heroBadge === "ONRIUM DMC | TUNEMEDAI SPACE DT" || parsed.heroBadge.includes("ONRIUM DMC")) {
+          parsed.heroBadge = "ONRIUM D&C | TUNEMEDIA SPACE DT";
         }
         
         return parsed;
@@ -152,7 +152,7 @@ export default function App() {
   // UI Control states
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
-  const [currentPage, setCurrentPage] = useState<'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime'>('home');
 
   // ----------------------------------------------------
   // Save changes to LocalStorage on updates
@@ -454,8 +454,8 @@ export default function App() {
               
               <IntroSection 
                 onEnterTuneMedia={() => handleScrollToSection('services')} 
-                onEnterEVGuard={() => {
-                  setCurrentPage('evguard');
+                onEnterWaterPrime={() => {
+                  setCurrentPage('waterprime');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
               />
@@ -475,8 +475,8 @@ export default function App() {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
             />
-          ) : currentPage === 'evguard' ? (
-            <EVGuardPage
+          ) : currentPage === 'waterprime' ? (
+            <WaterPrimePage
               settings={settings}
               onBackToHome={() => {
                 setCurrentPage('home');

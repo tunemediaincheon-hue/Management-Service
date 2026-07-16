@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import evguardProduct1 from '../assets/images/evguard_product_1_1782971146270.jpg';
-import evguardProduct2 from '../assets/images/evguard_product_2_1782971163249.jpg';
-import evguardDemo1 from '../assets/images/evguard_demo_1_1783021414746.jpg';
-import evguardDemo2 from '../assets/images/evguard_demo_2_1783021430096.jpg';
-import evguardDemo3 from '../assets/images/evguard_demo_3_1783021444805.jpg';
+import waterprimeProduct1 from '../assets/images/evguard_product_1_1782971146270.jpg';
+import waterprimeProduct2 from '../assets/images/evguard_product_2_1782971163249.jpg';
+import waterprimeDemo1 from '../assets/images/evguard_demo_1_1783021414746.jpg';
+import waterprimeDemo2 from '../assets/images/evguard_demo_2_1783021430096.jpg';
+import waterprimeDemo3 from '../assets/images/evguard_demo_3_1783021444805.jpg';
 
 import { 
   ShieldAlert, 
@@ -32,13 +32,13 @@ import {
 } from 'lucide-react';
 import { SiteSettings } from '../types';
 
-interface EVGuardPageProps {
+interface WaterPrimePageProps {
   settings: SiteSettings;
   onBackToHome: () => void;
   onContactClick: () => void;
 }
 
-export default function EVGuardPage({ settings, onBackToHome, onContactClick }: EVGuardPageProps) {
+export default function WaterPrimePage({ settings, onBackToHome, onContactClick }: WaterPrimePageProps) {
   const [activeTab, setActiveTab] = useState<'about' | 'products' | 'tech' | 'support'>('about');
   const [activeProductImage, setActiveProductImage] = useState<number>(0);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
@@ -48,18 +48,18 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
   // Product Slide Images & Parameters
   const productSlides = [
     {
-      title: "EV가드 배터리 침투형 소화 전용 유닛",
+      title: "워터프라임 배터리 침투형 소화 전용 유닛",
       desc: "특허 받은 열폭주 직접 관통 침투 소화 노즐이 적용되어, 차량 밑바닥 배터리 하우징 내부 고열 화재 발생부에 직접 소화액을 초강력 분사합니다.",
-      image: evguardProduct1,
+      image: waterprimeProduct1,
       type: "EV CLASS A, B, C, D",
       range: "4-6 M",
       capacity: "2.5 L",
       time: "초기 30초 이내 발동"
     },
     {
-      title: "EV가드 지능형 고압 연결 셋트",
+      title: "워터프라임 지능형 고압 연결 셋트",
       desc: "소방 호스 및 가압식 소화 가스 실린더가 다이렉트로 체결되어 고온 열폭주 셀 냉각을 위해 최적화된 물과 가스 혼합 소화 포뮬러를 지속 피딩합니다.",
-      image: evguardProduct2,
+      image: waterprimeProduct2,
       type: "EV SPECIALIST",
       range: "5-8 M",
       capacity: "연속 공급 가능",
@@ -115,7 +115,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
               </h1>
 
               <p className="text-sm sm:text-base md:text-lg text-zinc-600 leading-relaxed max-w-xl font-medium tracking-tight mb-8">
-                EVGUARD는 전기차 배터리 화재의 열폭주 특성을 완벽히 분석해 초기 진입과 피해 최소화를 위한 특허 및 디자인 등록 기반 전문 솔루션을 전개합니다.
+                WATER PRIME는 전기차 배터리 화재의 열폭주 특성을 완벽히 분석해 초기 진입과 피해 최소화를 위한 특허 및 디자인 등록 기반 전문 솔루션을 전개합니다.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -123,7 +123,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   onClick={() => setActiveTab('products')}
                   className="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 text-white font-bold text-xs rounded-xl tracking-wider transition-all shadow-md shadow-zinc-950/10 uppercase inline-flex items-center gap-2"
                 >
-                  <span>EVGUARD 핵심가치 보기</span>
+                  <span>WATER PRIME 핵심가치 보기</span>
                   <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
                 </button>
                 <button 
@@ -247,7 +247,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   onClick={() => {
                     setActiveTab(tab.id);
                     // Slight scroll offset to look polished
-                    const el = document.getElementById('evguard-content-start');
+                    const el = document.getElementById('waterprime-content-start');
                     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }}
                   className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold tracking-tight transition-all duration-300 flex-shrink-0 ${
@@ -265,7 +265,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
         </div>
       </div>
 
-      <div id="evguard-content-start" className="max-w-7xl mx-auto px-6 sm:px-12 py-16">
+      <div id="waterprime-content-start" className="max-w-7xl mx-auto px-6 sm:px-12 py-16">
         
         {/* ==================== TAB 1: 회사소개 (About Us) ==================== */}
         {activeTab === 'about' && (
@@ -274,7 +274,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
             {/* Introductory Narrative Section */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
               <div className="lg:col-span-5">
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block font-mono mb-2">— ABOUT EVGUARD — 01</span>
+                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest block font-mono mb-2">— ABOUT WATER PRIME — 01</span>
                 <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 tracking-tight leading-tight">
                   전기차 화재,<br />
                   왜 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">전문 대응</span>이<br />
@@ -328,12 +328,12 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
               <div className="lg:col-span-4 aspect-[3/4] rounded-2xl overflow-hidden relative group">
                 <img 
                   src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600" 
-                  alt="EVGUARD Technology Center" 
+                  alt="WATER PRIME Technology Center" 
                   className="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-80" />
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h4 className="text-base font-black">EVGUARD R&D LAB</h4>
+                  <h4 className="text-base font-black">WATER PRIME R&D LAB</h4>
                   <p className="text-[10px] text-zinc-300 font-mono mt-1">Since 1997 · Safety Engineering</p>
                 </div>
               </div>
@@ -345,13 +345,13 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 
                 <div className="text-sm sm:text-base text-zinc-650 leading-relaxed space-y-4 font-sans">
                   <p>
-                    안녕하십니까. EVGUARD를 찾아주신 여러분께 진심으로 감사드립니다.
+                    안녕하십니까. WATER PRIME를 찾아주신 여러분께 진심으로 감사드립니다.
                   </p>
                   <p>
                     전기차 시대의 빠른 성장은 우리에게 무한한 편의를 가져다주었지만, 동시에 지하 주차장 전기차 배터리 화재 위협이라는 새로운 공포를 안겨주었습니다. 열폭주와 유독가스 차단이 되지 않으면 단순한 물 살포로는 화재를 제어할 수 없습니다.
                   </p>
                   <p>
-                    <strong>EVGUARD</strong>는 지난 수십 년간 축적해 온 방재 원천 기술을 총망라하여, 배터리 팩 내부로 직접 가스 소화 물질을 주입하는 파괴적 소화 특허 기술을 완성하였습니다. 우리는 단순한 제품 공급업체에 머물지 않고, 아파트 단지 주민들과 소방 인력들의 골든타임을 확보하는 "소중한 일상 안전 전위대" 역할을 자처합니다.
+                    <strong>WATER PRIME</strong>는 지난 수십 년간 축적해 온 방재 원천 기술을 총망라하여, 배터리 팩 내부로 직접 가스 소화 물질을 주입하는 파괴적 소화 특허 기술을 완성하였습니다. 우리는 단순한 제품 공급업체에 머물지 않고, 아파트 단지 주민들과 소방 인력들의 골든타임을 확보하는 "소중한 일상 안전 전위대" 역할을 자처합니다.
                   </p>
                   <p>
                     고객의 무한 신뢰에 오직 무결점 품질과 첨단 안전 기술로 보답할 것을 강력히 약속드립니다.
@@ -362,7 +362,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   <div className="text-xs sm:text-sm font-bold text-zinc-700">
                     — 고객 생명과 재산 지킴이 <span className="text-zinc-900 font-black">김용진 올림</span>
                   </div>
-                  <span className="text-[10px] text-zinc-400 font-mono bg-zinc-50 border border-zinc-150 px-2 py-1 rounded-md">EVGUARD CEO</span>
+                  <span className="text-[10px] text-zinc-400 font-mono bg-zinc-50 border border-zinc-150 px-2 py-1 rounded-md">WATER PRIME CEO</span>
                 </div>
               </div>
             </div>
@@ -397,7 +397,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white/5 border border-white/5 rounded-2xl p-6 hover:bg-white/10 transition-colors">
                   <span className="text-2xl font-black text-red-400 font-mono">04</span>
                   <h4 className="text-sm font-bold text-white mt-3 mb-1">품질 경영</h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed">일말의 오차도 허용치 않는 온리움디엠씨 공장의 엄격한 정밀 가공 및 엄중한 검수 생산 체계</p>
+                  <p className="text-xs text-zinc-400 leading-relaxed">일말의 오차도 허용치 않는 온리움디엔씨 공장의 엄격한 정밀 가공 및 엄중한 검수 생산 체계</p>
                 </div>
               </div>
             </div>
@@ -409,9 +409,9 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
                 <div className="max-w-xl">
                   <h4 className="text-xs font-black uppercase tracking-widest font-mono text-yellow-300 mb-2">Double Core Synergy</h4>
-                  <h3 className="text-xl sm:text-2xl font-black tracking-tight">주식회사 온리움디엠씨 정밀 제조 및 공동 생산 인프라</h3>
+                  <h3 className="text-xl sm:text-2xl font-black tracking-tight">주식회사 온리움디엔씨 정밀 제조 및 공동 생산 인프라</h3>
                   <p className="text-xs sm:text-sm text-blue-100 leading-relaxed mt-4">
-                    EVGUARD의 원천 특허 방재 특화 기어와 <strong>주식회사 온리움디엠씨의 압도적인 자본 조달망, 고성능 정밀 금형 조립 제조 라인</strong>이 하나로 만나, 신뢰할 수 있는 소방 규격 제품의 대량 생산 및 신속 조달을 책임집니다.
+                    WATER PRIME의 원천 특허 방재 특화 기어와 <strong>주식회사 온리움디엔씨의 압도적인 자본 조달망, 고성능 정밀 금형 조립 제조 라인</strong>이 하나로 만나, 신뢰할 수 있는 소방 규격 제품의 대량 생산 및 신속 조달을 책임집니다.
                   </p>
                 </div>
                 <button 
@@ -436,7 +436,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 </div>
               </div>
               <a 
-                href="https://evguard.co.kr/docs/patent-10-2025-0047078.pdf"
+                href="https://waterprime.co.kr/docs/patent-10-2025-0047078.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 referrerPolicy="no-referrer"
@@ -457,7 +457,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
             {/* Header intro */}
             <div className="text-center max-w-3xl mx-auto mb-16">
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600 font-mono bg-blue-50 px-3 py-1 rounded-full">
-                EVGUARD PRODUCTS & SOLUTIONS
+                WATER PRIME PRODUCTS & SOLUTIONS
               </span>
               <h3 className="text-3xl font-black text-zinc-900 tracking-tight mt-4">
                 EV 전기차 전용 침투형 소화기
@@ -602,7 +602,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white border border-zinc-150 rounded-2xl overflow-hidden shadow-sm group">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src={evguardDemo1} 
+                      src={waterprimeDemo1} 
                       alt="현장 출동 시연" 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
@@ -618,7 +618,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white border border-zinc-150 rounded-2xl overflow-hidden shadow-sm group">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src={evguardDemo2} 
+                      src={waterprimeDemo2} 
                       alt="실전 분사 테스트" 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
@@ -634,7 +634,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="bg-white border border-zinc-150 rounded-2xl overflow-hidden shadow-sm group">
                   <div className="aspect-video relative overflow-hidden">
                     <img 
-                      src={evguardDemo3} 
+                      src={waterprimeDemo3} 
                       alt="대응 훈련 현장" 
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       referrerPolicy="no-referrer"
@@ -663,7 +663,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <div className="md:col-span-4 bg-white border border-zinc-150 rounded-3xl p-6 sm:p-8 shadow-sm hover:border-zinc-300 transition-colors">
                   <span className="text-[10px] font-mono font-bold text-zinc-400 uppercase tracking-widest">PRODUCT ONLY</span>
                   <h4 className="text-lg font-black text-zinc-900 mt-2">본품 단일 구매</h4>
-                  <p className="text-xs text-zinc-500 mt-2 leading-relaxed">EV가드 소화기 본품 수령 및 입주단지 소방거치대에 자체 관리 보관용.</p>
+                  <p className="text-xs text-zinc-500 mt-2 leading-relaxed">워터프라임 소화기 본품 수령 및 입주단지 소방거치대에 자체 관리 보관용.</p>
                   
                   <div className="my-8">
                     <span className="text-4xl font-black text-zinc-900">495</span>
@@ -673,7 +673,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   <ul className="space-y-3.5 text-xs text-zinc-650 border-t border-zinc-100 pt-6">
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-                      <span>EV가드 배터리 침투식 본품 1대</span>
+                      <span>워터프라임 배터리 침투식 본품 1대</span>
                     </li>
                     <li className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />
@@ -772,12 +772,12 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   <FileText className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="text-base font-black text-zinc-900">[제품소개 외관 디자인 자료] EV가드 소화기 외관 디자인 등록서류</h4>
+                  <h4 className="text-base font-black text-zinc-900">[제품소개 외관 디자인 자료] 워터프라임 소화기 외관 디자인 등록서류</h4>
                   <p className="text-xs text-zinc-500 mt-1">대한민국 특허청 공식 디자인 등록 제 30-2025-0013240호 디자인 명세서 및 투시도 명세 전문 PDF</p>
                 </div>
               </div>
               <a 
-                href="https://evguard.co.kr/docs/design-30-2025-0013240.pdf"
+                href="https://waterprime.co.kr/docs/design-30-2025-0013240.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 referrerPolicy="no-referrer"
@@ -804,7 +804,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   현장 중심 안전 기술
                 </h3>
                 <p className="text-sm text-zinc-500 leading-relaxed">
-                  EVGUARD의 핵심 강점은 배터리 내부 압력 조율과 직접 소화액 강제 관통 메커니즘에 있습니다. 단순 표면 냉각에 머무르는 기존 소수 대안물과 격이 다른 소방 학술 R&D 데이터를 바탕으로 안전 솔루션을 구현합니다.
+                  WATER PRIME의 핵심 강점은 배터리 내부 압력 조율과 직접 소화액 강제 관통 메커니즘에 있습니다. 단순 표면 냉각에 머무르는 기존 소수 대안물과 격이 다른 소방 학술 R&D 데이터를 바탕으로 안전 솔루션을 구현합니다.
                 </p>
 
                 {/* Flow step list */}
@@ -872,7 +872,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 </div>
 
                 <div className="pt-6 border-t border-white/10 mt-8 flex items-center justify-between text-xs font-bold text-zinc-400 font-mono">
-                  <span>EVGUARD TELEMETRY SIMULATION</span>
+                  <span>WATER PRIME TELEMETRY SIMULATION</span>
                   <span>STATUS: READY</span>
                 </div>
               </div>
@@ -884,7 +884,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                 <span className="text-[10px] font-mono font-bold tracking-widest text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full uppercase">KIPO PATENT — 08</span>
                 <h3 className="text-2xl sm:text-3xl font-black text-zinc-900 mt-3">특허 및 디자인 등록 현황</h3>
                 <p className="text-xs sm:text-sm text-zinc-500 mt-2 leading-relaxed">
-                  EVGUARD의 독창적인 기술과 인체공학적 안전 디자인 설계는 특허청(KIPO)에 엄격히 공식 등록되어 권리를 완벽히 보호받고 있습니다.
+                  WATER PRIME의 독창적인 기술과 인체공학적 안전 디자인 설계는 특허청(KIPO)에 엄격히 공식 등록되어 권리를 완벽히 보호받고 있습니다.
                 </p>
               </div>
 
@@ -919,7 +919,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
 
                   <div className="mt-8 pt-6 border-t border-zinc-100">
                     <a 
-                      href="https://evguard.co.kr/docs/patent-10-2025-0047078.pdf"
+                      href="https://waterprime.co.kr/docs/patent-10-2025-0047078.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       referrerPolicy="no-referrer"
@@ -949,7 +949,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                     </div>
 
                     <h4 className="text-lg font-black text-zinc-900 leading-tight mb-2">
-                      EV가드 소화기 외관 디자인
+                      워터프라임 소화기 외관 디자인
                     </h4>
                     <p className="text-xs text-zinc-500 font-mono bg-zinc-50 border border-zinc-150 px-2.5 py-1 rounded-md inline-block">
                       제 30-2025-0013240호
@@ -961,7 +961,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
 
                   <div className="mt-8 pt-6 border-t border-zinc-100">
                     <a 
-                      href="https://evguard.co.kr/docs/design-30-2025-0013240.pdf"
+                      href="https://waterprime.co.kr/docs/design-30-2025-0013240.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       referrerPolicy="no-referrer"
@@ -991,7 +991,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                     </div>
 
                     <h4 className="text-lg font-black text-zinc-900 leading-tight mb-2">
-                      EV가드 분사 노즐 구조 디자인
+                      워터프라임 분사 노즐 구조 디자인
                     </h4>
                     <p className="text-xs text-zinc-500 font-mono bg-zinc-50 border border-zinc-150 px-2.5 py-1 rounded-md inline-block">
                       제 30-2025-0013241호
@@ -1003,7 +1003,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
 
                   <div className="mt-8 pt-6 border-t border-zinc-100">
                     <a 
-                      href="https://evguard.co.kr/docs/design-30-2025-0013241.pdf"
+                      href="https://waterprime.co.kr/docs/design-30-2025-0013241.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       referrerPolicy="no-referrer"
@@ -1029,13 +1029,13 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
             {/* Customer Center Intro Title */}
             <div className="text-center max-w-3xl mx-auto">
               <span className="text-xs font-bold uppercase tracking-widest text-blue-600 font-mono bg-blue-50 px-3 py-1 rounded-full">
-                EVGUARD CUSTOMER SUPPORT
+                WATER PRIME CUSTOMER SUPPORT
               </span>
               <h3 className="text-3xl font-black text-zinc-900 tracking-tight mt-4">
                 고객의 안전과 만족을 최우선으로
               </h3>
               <p className="text-sm sm:text-base text-zinc-500 mt-4 leading-relaxed">
-                EVGUARD 도입 상담, 카탈로그 요청, 정기 A/S 안전 기술 지원 등 
+                WATER PRIME 도입 상담, 카탈로그 요청, 정기 A/S 안전 기술 지원 등 
                 모든 의문을 소방 방재 전문 엔지니어와 실시간 소통하여 신속히 해결하세요.
               </p>
             </div>
@@ -1049,7 +1049,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   </div>
                   <h4 className="text-base font-black text-zinc-900 mb-2">공지사항</h4>
                   <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed">
-                    EVGUARD의 최신 성능 업그레이드 소식, 법령 개정에 따른 소방 기준 안내, 주요 안전 시연 세미나 행사 정보를 확인하십시오.
+                    WATER PRIME의 최신 성능 업그레이드 소식, 법령 개정에 따른 소방 기준 안내, 주요 안전 시연 세미나 행사 정보를 확인하십시오.
                   </p>
                 </div>
                 <button 
@@ -1101,7 +1101,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
             <div className="bg-zinc-50 border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-200 pb-5">
                 <div>
-                  <h4 className="text-lg font-black text-zinc-900">EVGUARD 공식 기술/디자인 증빙 자료실</h4>
+                  <h4 className="text-lg font-black text-zinc-900">WATER PRIME 공식 기술/디자인 증빙 자료실</h4>
                   <p className="text-xs text-zinc-500 mt-1">소방 허가 심의, 주민대표회의 증빙 제출에 즉시 사용 가능한 공식 규격 출원 서류 일체입니다.</p>
                 </div>
                 <span className="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-full uppercase font-mono">
@@ -1112,7 +1112,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* File 1 */}
                 <a 
-                  href="https://evguard.co.kr/docs/patent-10-2025-0047078.pdf"
+                  href="https://waterprime.co.kr/docs/patent-10-2025-0047078.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   referrerPolicy="no-referrer"
@@ -1130,7 +1130,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
 
                 {/* File 2 */}
                 <a 
-                  href="https://evguard.co.kr/docs/design-30-2025-0013240.pdf"
+                  href="https://waterprime.co.kr/docs/design-30-2025-0013240.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   referrerPolicy="no-referrer"
@@ -1148,7 +1148,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
 
                 {/* File 3 */}
                 <a 
-                  href="https://evguard.co.kr/docs/design-30-2025-0013241.pdf"
+                  href="https://waterprime.co.kr/docs/design-30-2025-0013241.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   referrerPolicy="no-referrer"
@@ -1217,7 +1217,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
                   
                   {activeFaq === 0 && (
                     <div className="px-6 pb-6 pt-1 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t border-zinc-100 animate-fadeIn">
-                      전기차 배터리 화재는 일반 화재와 연소 메커니즘 자체가 다릅니다. 고전압 배터리 내부에 에너지가 응축되어 있으며, 외부 공기 공급 없이 자체 열폭주(Thermal Runaway)를 거듭하므로, 일반 ABC 분말 소화제는 표면에만 묻고 내부 온도하강을 유도하지 못합니다. 반드시 배터리 팩 내부로 침투하여 다이렉트 소화 포뮬러를 주입할 수 있는 <strong>EVGUARD 전용 초기 대응 침투 장비와 전문 소방 체계</strong>가 필요합니다.
+                      전기차 배터리 화재는 일반 화재와 연소 메커니즘 자체가 다릅니다. 고전압 배터리 내부에 에너지가 응축되어 있으며, 외부 공기 공급 없이 자체 열폭주(Thermal Runaway)를 거듭하므로, 일반 ABC 분말 소화제는 표면에만 묻고 내부 온도하강을 유도하지 못합니다. 반드시 배터리 팩 내부로 침투하여 다이렉트 소화 포뮬러를 주입할 수 있는 <strong>WATER PRIME 전용 초기 대응 침투 장비와 전문 소방 체계</strong>가 필요합니다.
                     </div>
                   )}
                 </div>
@@ -1275,7 +1275,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
         <div className="max-w-3xl mx-auto px-6">
           <h4 className="text-xl sm:text-2xl font-black text-zinc-900 tracking-tight">전기차 안전, 완벽하게 대비하십시오.</h4>
           <p className="text-xs sm:text-sm text-zinc-500 leading-relaxed mt-3 max-w-xl mx-auto">
-            망설이는 찰나의 순간이 엄청난 자산 참사와 생명 위협으로 이어질 수 있습니다. 특허와 자본이 융합된 단 하나의 안전 브랜드 EVGUARD와 지금 즉시 논의하세요.
+            망설이는 찰나의 순간이 엄청난 자산 참사와 생명 위협으로 이어질 수 있습니다. 특허와 자본이 융합된 단 하나의 안전 브랜드 WATER PRIME와 지금 즉시 논의하세요.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <button
@@ -1288,7 +1288,7 @@ export default function EVGuardPage({ settings, onBackToHome, onContactClick }: 
             <button
               onClick={() => {
                 setActiveTab('tech');
-                const el = document.getElementById('evguard-content-start');
+                const el = document.getElementById('waterprime-content-start');
                 if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
               className="px-6 py-3.5 bg-white hover:bg-zinc-50 text-zinc-700 border border-zinc-250 font-bold text-xs rounded-xl tracking-wider transition-colors"

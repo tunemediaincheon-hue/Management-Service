@@ -109,7 +109,7 @@ export default function Contact({ settings, onSubmitInquiry }: ContactProps) {
                 <MapPin className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                 <div className="flex flex-col gap-1 text-sm sm:text-base font-medium font-sans">
                   <p className="leading-relaxed">
-                    {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 해정타운및jst)'}
+                    {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 행정타운 및 JST)'}
                   </p>
                 </div>
               </div>

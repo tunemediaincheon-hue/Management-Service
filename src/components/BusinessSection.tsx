@@ -10,10 +10,10 @@ import cmsServiceThumbnail from '../assets/images/cms_service_thumbnail_17828440
 import aiVisionThumbnail from '../assets/images/ai_vision_thumbnail_1782844076504.jpg';
 import smartIotThumbnail from '../assets/images/smart_iot_thumbnail_1782844091537.jpg';
 import operationServiceThumbnail from '../assets/images/operation_service_thumbnail_1782844106516.jpg';
-import evguardProduct1 from '../assets/images/evguard_product_1_1782971146270.jpg';
+import waterprimeProduct1 from '../assets/images/evguard_product_1_1782971146270.jpg';
 
 interface BusinessSectionProps {
-  onPageChange?: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => void;
+  onPageChange?: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime') => void;
 }
 
 export default function BusinessSection({ onPageChange }: BusinessSectionProps) {
@@ -73,16 +73,16 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
       ]
     },
     {
-      id: 'evguard',
-      title: 'EVGUARD (전기차 화재 대응)',
-      description: '주식회사 온리움디엠씨 협업 전기차 배터리 열폭주 대응 파괴식 침투 소방 솔루션',
-      image: evguardProduct1,
+      id: 'waterprime',
+      title: 'WATER PRIME (전기차 화재 대응)',
+      description: '주식회사 온리움디엔씨 협업 전기차 배터리 열폭주 대응 파괴식 침투 소방 솔루션',
+      image: waterprimeProduct1,
       icon: <ShieldAlert className="w-6 h-6 text-blue-400" />,
       details: [
         '특허 받은 열폭주 배터리 직접 침투 소화 노즐 기술 탑재',
         '골든타임 30초 내 신속 장비 거치 및 직접 소방 가스 주입 개시',
         '전기차 전용 소화기 및 전위 보관함 제조 조립 인프라 완비',
-        '주식회사 온리움디엠씨 정밀 부품 설계 및 금형 기술 협업 생산 실현'
+        '주식회사 온리움디엔씨 정밀 부품 설계 및 금형 기술 협업 생산 실현'
       ]
     }
   ];
@@ -100,8 +100,8 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
     } else if (id === 'service' && onPageChange) {
       onPageChange('smart-service');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else if (id === 'evguard' && onPageChange) {
-      onPageChange('evguard');
+    } else if (id === 'waterprime' && onPageChange) {
+      onPageChange('waterprime');
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       setActiveModal(id);
@@ -127,7 +127,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
               key={item.id}
               onClick={() => handleItemClick(item.id)}
               className={`group cursor-pointer relative rounded-2xl overflow-hidden aspect-video min-h-[220px] sm:min-h-[280px] shadow-md border border-zinc-200/50 hover:shadow-xl hover:border-blue-300 transition-all duration-500 ${
-                item.id === 'evguard' ? 'md:col-span-2' : ''
+                item.id === 'waterprime' ? 'md:col-span-2' : ''
               }`}
             >
               {/* Background cover image */}
@@ -202,7 +202,7 @@ export default function BusinessSection({ onPageChange }: BusinessSectionProps) 
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-blue-600 tracking-wider font-mono uppercase">
-                      ONRIUM DMC SOLUTION
+                      ONRIUM D&C SOLUTION
                     </span>
                     <h4 className="text-xl sm:text-2xl font-black text-zinc-900 tracking-tight font-sans">
                       {item.title}

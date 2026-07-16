@@ -13,8 +13,8 @@ interface HeaderProps {
   isAdminMode: boolean;
   scrollToSection: (id: string) => void;
   activeSection: string;
-  currentPage: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard';
-  onPageChange: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => void;
+  currentPage: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime';
+  onPageChange: (page: 'home' | 'greetings' | 'org' | 'history' | 'map' | 'reference' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime') => void;
 }
 
 export default function Header({
@@ -42,7 +42,7 @@ export default function Header({
   const navItems = [
     { id: 'hero', label: 'About Us', hasDropdown: true, dropdownType: 'about' as const },
     { id: 'services', label: 'Business', hasDropdown: true, dropdownType: 'business' as const },
-    { id: 'evguard', label: 'EVGUARD' },
+    { id: 'waterprime', label: 'WATER PRIME' },
     { id: 'reference', label: 'Reference' },
     { id: 'contact', label: 'Contact' },
   ];
@@ -58,8 +58,8 @@ export default function Header({
       return;
     }
 
-    if (id === 'evguard') {
-      onPageChange('evguard');
+    if (id === 'waterprime') {
+      onPageChange('waterprime');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -75,7 +75,7 @@ export default function Header({
     }
   };
 
-  const handleSubPageClick = (page: 'greetings' | 'org' | 'history' | 'map' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'evguard') => {
+  const handleSubPageClick = (page: 'greetings' | 'org' | 'history' | 'map' | 'digital-signage' | 'smart-ai' | 'smart-iot' | 'smart-service' | 'waterprime') => {
     setIsMobileMenuOpen(false);
     setIsAboutDropdownOpen(false);
     setIsBusinessDropdownOpen(false);
@@ -110,13 +110,8 @@ export default function Header({
             <span className={`text-xl font-bold tracking-wider font-sans transition-colors duration-300 ${
               isTransparent ? 'text-white' : 'text-zinc-900'
             }`}>
-              <span className="font-black">{settings.logoText || '온리움디엠씨'}</span>
+              <span className="font-black">{settings.logoText || '온리움디엔씨'}</span>
               <span className="text-blue-500 font-black">.</span>
-            </span>
-            <span className={`text-[10px] tracking-widest font-mono uppercase transition-colors duration-300 self-end mb-0.5 ${
-              isTransparent ? 'text-white/60' : 'text-zinc-400'
-            }`}>
-              {settings.logoSubText || 'tunemedia'}
             </span>
           </div>
         </div>
@@ -216,10 +211,10 @@ export default function Header({
                           운영 서비스
                         </button>
                         <button
-                          onClick={() => handleSubPageClick('evguard')}
+                          onClick={() => handleSubPageClick('waterprime')}
                           className="w-full text-left px-5 py-2.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 hover:text-blue-600 transition-colors border-t border-zinc-100"
                         >
-                          EVGUARD (전기차 화재 대응)
+                          WATER PRIME (전기차 화재 대응)
                         </button>
                       </div>
                     )}
@@ -229,8 +224,8 @@ export default function Header({
 
               const isItemActive = item.id === 'reference'
                 ? currentPage === 'reference'
-                : item.id === 'evguard'
-                  ? currentPage === 'evguard'
+                : item.id === 'waterprime'
+                  ? currentPage === 'waterprime'
                   : currentPage === 'home' && activeSection === item.id;
 
               return (
@@ -330,8 +325,8 @@ export default function Header({
                     className={`text-left py-2.5 text-base font-semibold transition-colors ${
                       item.id === 'reference'
                         ? currentPage === 'reference' ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
-                        : item.id === 'evguard'
-                          ? currentPage === 'evguard' ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
+                        : item.id === 'waterprime'
+                          ? currentPage === 'waterprime' ? 'text-blue-600 font-bold' : 'text-zinc-650 hover:text-zinc-900'
                           : currentPage === 'home' && activeSection === item.id 
                             ? 'text-blue-600 font-bold' 
                             : 'text-zinc-650 hover:text-zinc-900'
@@ -397,10 +392,10 @@ export default function Header({
                           • 운영 서비스
                         </button>
                         <button
-                          onClick={() => handleSubPageClick('evguard')}
-                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'evguard' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
+                          onClick={() => handleSubPageClick('waterprime')}
+                          className={`text-left py-1.5 text-xs font-semibold ${currentPage === 'waterprime' ? 'text-blue-600' : 'text-zinc-500 hover:text-blue-600'}`}
                         >
-                          • EVGUARD (전기차 화재 대응)
+                          • WATER PRIME (전기차 화재 대응)
                         </button>
                       </>
                     )}

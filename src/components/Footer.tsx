@@ -39,7 +39,7 @@ export default function Footer({ settings }: FooterProps) {
           </div>
           
           <div className="flex flex-wrap md:justify-end gap-x-3 gap-y-1">
-            <span>주소: {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 해정타운및jst)'}</span>
+            <span>주소: {settings.address || '인천광역시 미추홀구 석정로 229, 5층 (도화동, 행정타운 및 JST)'}</span>
           </div>
 
           <div className="flex flex-wrap md:justify-end gap-x-3 gap-y-1 mt-1 font-mono">
